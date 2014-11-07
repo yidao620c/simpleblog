@@ -53,6 +53,12 @@ ROOT_URLCONF = 'mysite.urls'
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+# TEMPLATE_DIRS
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'mysite/templates'),
+    os.path.join(BASE_DIR, 'blog/templates'),
+)
+
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -90,11 +96,15 @@ ALLOWED_HOSTS = ['*']
 STATIC_ROOT = 'staticfiles'
 DEBUG = False
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
+
+LOGIN_REDIRECT_URL = '/'
+
 try:
     from .local_settings import *
 except ImportError:
     pass
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+
