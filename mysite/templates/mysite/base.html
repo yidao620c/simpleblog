@@ -1,32 +1,136 @@
 {% load staticfiles %}
 <html>
 <head>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<link href="http://fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="{% static 'css/blog.css' %}">
-<title>Django Girls Blog</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <title>Simple Blog</title>
 </head>
-<body>
-    <div class="page-header">
-        {% if user.is_authenticated %}
-        <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
-        <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
-        <p class="top-menu">Hello {{ user.username }}<small>&nbsp;<a href="{% url 'django.contrib.auth.views.logout' %}">Log out</a></p>
-        {% else %}
-        <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-        {% endif %}
-        <h1><a href="{% url 'blog.views.post_list' %}">Django Girls</a></h1>
+<body class="customize-support">
+<div class="page-header">
+    {% if user.is_authenticated %}
+        <a href="{% url 'post_new' %}" class="top-menu"><span
+                class="glyphicon glyphicon-plus"></span></a>
+        <a href="{% url 'post_draft_list' %}" class="top-menu"><span
+                class="glyphicon glyphicon-edit"></span></a>
+        <p class="top-menu" style="font-size: 20pt;">Hello {{ user.username }}
+            <small>&nbsp;</small>
+            <a href="{% url 'django.contrib.auth.views.logout' %}" class="top-menu">
+                <span class="glyphicon glyphicon-log-out"></span></a>
+        </p>
+    {% else %}
+        <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu">
+            <span class="glyphicon glyphicon-log-in"></span></a>
+    {% endif %}
+    <h1><a href="{% url 'blog.views.post_list' %}">Simple Blog</a></h1>
+</div>
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-7">
+        {% block content %}
+        {% endblock %}
     </div>
-    <div class="content">
-        <div class="row">
-            <div class="col-md-8">
-            {% block content %}
-            {% endblock %}
+    <div class="col-md-3">
+        <div id="sidebar">
+            <!-- sidebar north START -->
+            <div id="northsidebar" class="sidebar">
+                <!-- showcase -->
+                <div id="recent-posts-2" class="widget widget_recent_entries">
+                    <h3>近期文章</h3>
+                    <ul>
+                        <li><a href="#">通过七牛云存储缓存加速Gravatar头像</a></li>
+                        <li><a href="#">Python正则表达式详解</a></li>
+                        <li><a href="#">搭建个人WordPress博客笔记</a></li>
+                    </ul>
+                </div>
+                <div id="recent-comments-2" class="widget widget_recent_comments">
+                    <h3>近期评论</h3>
+                    <ul id="recentcomments">
+                        <li class="recentcomments"><span
+                                class="comment-author-link">熊能</span>发表在《<a
+                                href="#">centos6更新yum源</a>》
+                        </li>
+                        <li class="recentcomments"><span
+                                class="comment-author-link">jun sha</span>发表在《<a
+                                href="#">centos6更新yum源</a>》
+                        </li>
+                    </ul>
+                </div>
+                <div id="tag_cloud-2" class="widget widget_tag_cloud">
+                    <h3>标签</h3>
+
+                    <div class="tagcloud">
+                        <a href="#" class="tag-link-20" title="3个话题"
+                           style="font-size: 14pt;">centos</a>
+                        <a href="#" class="tag-link-30" title="1个话题"
+                           style="font-size: 8pt;">cron</a>
+                        <a href="#" class="tag-link-34" title="1个话题"
+                           style="font-size: 8pt;">谜题</a>
+                    </div>
+                </div>
+                <div id="categories-2" class="widget widget_categories">
+                    <h3>分类目录</h3>
+                    <ul>
+                        <li class="cat-item cat-item-10"><a href="#"
+                                                            title="Django框架">Django</a>
+                        </li>
+                        <li class="cat-item cat-item-15"><a href="#"
+                                                            title="开发测试工具">开发工具</a>
+                        </li>
+                        <li class="cat-item cat-item-12"><a href="#"
+                                                            title="数据库技术">数据库</a>
+                        </li>
+                        <li class="cat-item cat-item-8"><a href="#"
+                                                           title="心情故事">朝花夕拾</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="archives-2" class="widget widget_archive">
+                    <h3>文章归档</h3>
+                    <ul>
+                        <li>
+                            <a href="http://www.pycoding.com/articles/date/2014/11">2014年十一月</a>&nbsp;(42)
+                        </li>
+                    </ul>
+                </div>
+                <div id="meta-2" class="widget widget_meta">
+                    <h3>功能</h3>
+                    <ul>
+                        <li><a href="http://www.pycoding.com/wp-admin/">管理站点</a></li>
+                        <li>
+                            <a href="http://www.pycoding.com/wp-login.php?action=logout&amp;_wpnonce=17d960d33c">登出</a>
+                        </li>
+                        <li><a href="http://www.pycoding.com/feed">文章<abbr
+                                title="Really Simple Syndication">RSS</abbr></a></li>
+                    </ul>
+                </div>
             </div>
+            <!-- sidebar north END -->
         </div>
     </div>
+    <div class="col-md-1"></div>
+</div>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+        <div id="footer">
+            <a id="gotop" href="#" onclick="MGJS.goTop();return false;">回到顶部</a>
+            <div id="copyright">版权所有 © 2014 <a href="http://www.pycoding.com/">野猪林</a>	</div>
+            <div id="themeinfo">页面设计由 <a href="http://www.pycoding.com/">熊能</a> 提供, 通过
+                <a href="http://validator.w3.org/check?uri=referer">XHTML 1.1</a>
+                和 <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">CSS 3</a> 验证.	</div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
 
