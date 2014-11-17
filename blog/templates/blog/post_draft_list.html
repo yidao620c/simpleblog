@@ -3,9 +3,12 @@
 {% block content %}
     {% for post in posts %}
         <div class="post">
-            <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
-            <h1><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
-            <p>{{ post.text|truncatechars:200 }}</p>
+            <h2><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <div class="info">
+                <span class="date">创建时间: {{ post.created_date|date:'Y年m月d日' }}</span>
+                <div class="fixed"></div>
+            </div>
+            <div class="content"><p>{{ post.text|truncatechars:300|linebreaks }}</p></div>
         </div>
     {% endfor %}
 {% endblock %}

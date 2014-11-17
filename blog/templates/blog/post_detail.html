@@ -1,19 +1,30 @@
 {% extends 'mysite/base.html' %}
 
 {% block content %}
-    <div class="date">
-        {% if post.published_date %}
-            {{ post.published_date }}
-        {% else %}
-            {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'blog.views.post_publish' pk=post.pk %}">Publish</a>
+    <div class="post">
+        <h2>{{ post.title }}</h2>
+        <div class="info">
+            {% if post.published_date %}
+                <span class="date">2014年11月14日</span>
+            {% else %}
+                {% if user.is_authenticated %}
+                    <a class="btn btn-default" href="{% url 'blog.views.post_publish' pk=post.pk %}"
+                            onclick="return confirm('确定发布文章吗？');">发布</a>
+                {% endif %}
             {% endif %}
-        {% endif %}
-        {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-        {% endif %}
+            <span class="comments"><a href="#" title="查看文章评论">没有评论</a></span>
+            <span class="comments"> 8 人阅读&nbsp;&nbsp;</span>
+            {% if user.is_authenticated %}
+                <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </a>
+                <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"
+                        onclick="return confirm('确定删除文章吗？');">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </a>
+            {% endif %}
+            <div class="fixed"></div>
+        </div>
+        <div class="content"><p>{{ post.text|linebreaks }}</p></div>
     </div>
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.text|linebreaks }}</p>
 {% endblock %}

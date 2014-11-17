@@ -1,9 +1,14 @@
 {% extends 'mysite/base.html' %}
 
 {% block content %}
-    <h1>New post</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
-    </form>
+    <div class="post">
+        <h2>{% if is_new %}新建文章{% else %}编辑文章{% endif %}</h2>
+        <form method="POST" class="post-form">{% csrf_token %}
+            <div class="content">
+                <p>{{ form.as_p }}</p>
+                <button type="button" class="save btn btn-default" onclick="location.href='/'">取消</button>
+                <button type="submit" class="save btn btn-default" style="margin-right: 5px;">保存</button>
+            </div>
+        </form>
+    </div>
 {% endblock %}

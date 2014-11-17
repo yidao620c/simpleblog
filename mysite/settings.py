@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'w%^z6iksml%ys02aw33f+mr3(nuhc8hq$k2p_*4ac=n@t!2*_%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
+# DEBUG = True
 #ALLOWED_HOSTS = []
 
 TEMPLATE_DEBUG = True
@@ -56,6 +56,17 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'blog/templates'),
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    "django.core.context_processors.request",
+)
+
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
@@ -86,7 +97,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+
+DATABASES['default'] = dj_database_url.config()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 STATIC_ROOT = 'staticfiles'

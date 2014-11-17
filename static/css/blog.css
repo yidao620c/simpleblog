@@ -1343,4 +1343,8 @@ a#gotop {
 .col-md-10 {
     width: 71.333333%;
 }
+.row {
+    margin-right: 0;
+    margin-left: -15px;
+}
 /* thread twitter END */
