@@ -23,8 +23,8 @@ def custom_proc(request):
     categories = models.Category.objects.annotate(
         num_post=Count('post')).filter(num_post__gt=0).order_by('name')
     return {
-        'recent_posts': recent_posts,
-        'recent_comments': recent_comments,
-        'tags': utils.tag_font(tags),
-        'categories': categories,
+        'RECENT_POSTS': recent_posts,
+        'RECENT_COMMENTS': recent_comments,
+        'TAGS': utils.tag_font(tags),
+        'CATEGORIES': categories,
     }

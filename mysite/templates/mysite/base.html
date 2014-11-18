@@ -45,7 +45,7 @@
                 <div id="recent-posts-2" class="widget widget_recent_entries">
                     <h3>近期文章</h3>
                     <ul>
-                        {% for recent_post in recent_posts %}
+                        {% for recent_post in RECENT_POSTS %}
                             <li>
                                 <a href="{% url 'blog.views.post_detail' pk=recent_post.pk %}">
                                     {{ recent_post.title }}
@@ -57,7 +57,7 @@
                 <div id="recent-comments-2" class="widget widget_recent_comments">
                     <h3>近期评论</h3>
                     <ul id="recentcomments">
-                        {% for recent_comment in recent_comments %}
+                        {% for recent_comment in RECENT_COMMENTS %}
                         <li class="recentcomments">
                             <span>{{ recent_comment }}</span>
                         </li>
@@ -67,8 +67,9 @@
                 <div id="tag_cloud-2" class="widget widget_tag_cloud">
                     <h3>标签</h3>
                     <div class="tagcloud">
-                        {% for name, num, size in tags %}
-                        <a href="#" class="tag-link-20" title="{{ num }}个话题"
+                        {% for name, num, size in TAGS %}
+                        <a href="{% url 'blog.views.post_list_by_tag' tag=name %}"
+                           class="tag-link-20" title="{{ num }}个话题"
                            style="font-size: {{ size }}pt;">{{ name }}</a>
                         {% endfor %}
                     </div>
@@ -76,9 +77,10 @@
                 <div id="categories-2" class="widget widget_categories">
                     <h3>分类目录</h3>
                     <ul>
-                        {% for ca in categories %}
+                        {% for ca in CATEGORIES %}
                         <li class="cat-item cat-item-10">
-                            <a href="#" title="{{ ca.name }}">{{ ca.name }}</a>
+                            <a href="{% url 'blog.views.post_list_by_category' cg=ca.name %}"
+                               title="{{ ca.name }}">{{ ca.name }}</a>
                         </li>
                         {% endfor %}
                     </ul>

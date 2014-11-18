@@ -28,11 +28,16 @@
         <div class="content"><p>{{ post.text|linebreaks }}</p></div>
         <div class="under">
             <span class="categories">分类: </span>
-            <span><a href="#" rel="category tag">{{ post.category.name }}</a></span>
+            <span>
+                <a href="{% url 'blog.views.post_list_by_category' cg=post.category.name %}"
+                   rel="category tag">{{ post.category.name }}
+                </a>
+            </span>
             <span class="tags">标签: </span>
             <span>
                 {% for tg in post.tags.all %}
-                    <a href="#" rel="tag">{{ tg.name }}</a>&nbsp;
+                    <a href="{% url 'blog.views.post_list_by_tag' tag=tg.name %}"
+                       rel="tag">{{ tg.name }}</a>&nbsp;
                 {% endfor %}
             </span>
         </div>
