@@ -46,70 +46,60 @@
                 <div id="recent-posts-2" class="widget widget_recent_entries">
                     <h3>近期文章</h3>
                     <ul>
-                        <li><a href="#">通过七牛云存储缓存加速Gravatar头像</a></li>
-                        <li><a href="#">Python正则表达式详解</a></li>
-                        <li><a href="#">搭建个人WordPress博客笔记</a></li>
+                        {% for recent_post in recent_posts %}
+                            <li>
+                                <a href="{% url 'blog.views.post_detail' pk=recent_post.pk %}">
+                                    {{ recent_post.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div id="recent-comments-2" class="widget widget_recent_comments">
                     <h3>近期评论</h3>
                     <ul id="recentcomments">
-                        <li class="recentcomments"><span
-                                class="comment-author-link">熊能</span>发表在《<a
-                                href="#">centos6更新yum源</a>》
+                        {% for recent_comment in recent_comments %}
+                        <li class="recentcomments">
+                            <span>{{ recent_comment }}</span>
                         </li>
-                        <li class="recentcomments"><span
-                                class="comment-author-link">jun sha</span>发表在《<a
-                                href="#">centos6更新yum源</a>》
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div id="tag_cloud-2" class="widget widget_tag_cloud">
                     <h3>标签</h3>
-
                     <div class="tagcloud">
-                        <a href="#" class="tag-link-20" title="3个话题"
-                           style="font-size: 14pt;">centos</a>
-                        <a href="#" class="tag-link-30" title="1个话题"
-                           style="font-size: 8pt;">cron</a>
-                        <a href="#" class="tag-link-34" title="1个话题"
-                           style="font-size: 8pt;">谜题</a>
+                        {% for name, num, size in tags %}
+                        <a href="#" class="tag-link-20" title="{{ num }}个话题"
+                           style="font-size: {{ size }}pt;">{{ name }}</a>
+                        {% endfor %}
                     </div>
                 </div>
                 <div id="categories-2" class="widget widget_categories">
                     <h3>分类目录</h3>
                     <ul>
-                        <li class="cat-item cat-item-10"><a href="#"
-                                                            title="Django框架">Django</a>
+                        {% for ca in categories %}
+                        <li class="cat-item cat-item-10">
+                            <a href="#" title="{{ ca.name }}">{{ ca.name }}</a>
                         </li>
-                        <li class="cat-item cat-item-15"><a href="#"
-                                                            title="开发测试工具">开发工具</a>
-                        </li>
-                        <li class="cat-item cat-item-12"><a href="#"
-                                                            title="数据库技术">数据库</a>
-                        </li>
-                        <li class="cat-item cat-item-8"><a href="#"
-                                                           title="心情故事">朝花夕拾</a>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div id="archives-2" class="widget widget_archive">
                     <h3>文章归档</h3>
                     <ul>
                         <li>
-                            <a href="http://www.pycoding.com/articles/date/2014/11">2014年十一月</a>&nbsp;(42)
+                            <a href="#">2014年十一月</a>&nbsp;(42)
                         </li>
                     </ul>
                 </div>
                 <div id="meta-2" class="widget widget_meta">
                     <h3>功能</h3>
                     <ul>
-                        <li><a href="http://www.pycoding.com/wp-admin/">管理站点</a></li>
+                        <li><a href="/admin">管理站点</a></li>
                         <li>
-                            <a href="http://www.pycoding.com/wp-login.php?action=logout&amp;_wpnonce=17d960d33c">登出</a>
+                            <a href="/logout">登出</a>
                         </li>
-                        <li><a href="http://www.pycoding.com/feed">文章<abbr
-                                title="Really Simple Syndication">RSS</abbr></a></li>
+                        <li><a href="#">文章<abbr title="RSS">RSS</abbr></a></li>
                     </ul>
                 </div>
             </div>

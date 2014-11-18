@@ -5,7 +5,7 @@
         <h2>{{ post.title }}</h2>
         <div class="info">
             {% if post.published_date %}
-                <span class="date">2014年11月14日</span>
+                <span class="date">{{ post.published_date|date:'Y年m月d日' }}</span>
             {% else %}
                 {% if user.is_authenticated %}
                     <a class="btn btn-default" href="{% url 'blog.views.post_publish' pk=post.pk %}"
@@ -13,7 +13,7 @@
                 {% endif %}
             {% endif %}
             <span class="comments"><a href="#" title="查看文章评论">没有评论</a></span>
-            <span class="comments"> 8 人阅读&nbsp;&nbsp;</span>
+            <span class="comments"> {{ post.click }} 人阅读&nbsp;&nbsp;</span>
             {% if user.is_authenticated %}
                 <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
                     <span class="glyphicon glyphicon-pencil"></span>
