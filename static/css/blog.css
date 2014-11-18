@@ -2,6 +2,9 @@
     background-color: #80a6ed;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
+    width:1111px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
@@ -27,7 +30,11 @@ h1, h2, h3, h4 {
     float: right;
 }
 
-.post-form textarea, .post-form input {
+.post-form textarea {
+    width: 100%;
+}
+
+.post-form input {
     width: 100%;
 }
 
@@ -530,7 +537,7 @@ textarea {
 	height:16px;
 	line-height:16px;
 	font-size:14px;
-	padding: 10px 0px 10px 10px;
+	padding: 10px 0 20px 10px;
         border-left: 1px solid #EEE;
         border-right: 1px solid #EEE;
 }
@@ -1332,7 +1339,7 @@ a#gotop {
 }
 
 .col-md-1 {
-    width: 14.333333%;
+    width: 14.8%;
 }
 .col-md-7 {
     width: 51.333333%;

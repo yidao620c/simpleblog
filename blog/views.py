@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post
+from .models import Post, Comment, Tag, Category
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.core.urlresolvers import reverse
@@ -8,7 +8,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__isnull=False).order_by('-published_date')
+    posts = Post.objects.filter(published_date__isnull=False).prefetch_related(
+        'category').prefetch_related('tags').order_by('-published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 
@@ -27,7 +28,20 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
+            # 开始处理标签
+            tags = request.POST['tags'].split(',')
+            all_tags = []
+            if tags and len(tags) > 0:
+                for tag in tags:
+                    try:
+                        t = Tag.objects.get(name=tag)
+                    except Tag.DoesNotExist:
+                        t = Tag(name=tag)
+                        t.save()
+                    all_tags.append(t)
             post.save()
+            for tg in all_tags:
+                post.tags.add(tg)
             return redirect('blog.views.post_detail', pk=post.pk)
     else:
         form = PostForm()
@@ -46,7 +60,8 @@ def post_edit(request, pk):
             return redirect('blog.views.post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_edit.html', {'form': form})
+    tags = ','.join([t.name for t in post.tags.all()])
+    return render(request, 'blog/post_edit.html', {'form': form, 'tags': tags})
 
 
 @login_required

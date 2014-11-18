@@ -6,6 +6,11 @@
         <form method="POST" class="post-form">{% csrf_token %}
             <div class="content">
                 <p>{{ form.as_p }}</p>
+                <p>
+                    <label for="tag">标签(逗号隔开)：</label>
+                    <input id="tag" name="tags" type="text" class="form-control"
+                           placeholder="tags" style="width: 60%;" value="{{ tags }}" />
+                </p>
                 <button type="button" class="save btn btn-default" onclick="location.href='/'">取消</button>
                 <button type="submit" class="save btn btn-default" style="margin-right: 5px;">保存</button>
             </div>
