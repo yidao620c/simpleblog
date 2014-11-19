@@ -15,7 +15,8 @@ def custom_proc(request):
     recent_posts = models.Post.objects.filter(
         published_date__isnull=False).order_by('-published_date')[:10]
     # 近期评论
-    recent_comments = models.Comment.objects.order_by('-created_date')[:10]
+    recent_comments = models.Comment.objects.prefetch_related(
+        'post').order_by('-created_date')[:10]
     # 标签
     alltags = models.Tag.objects.annotate(num_post=Count('post'))
     tags = {t.name: t.num_post for t in alltags}

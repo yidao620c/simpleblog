@@ -11,14 +11,16 @@ from django.db.models import Count
 
 def post_list(request):
     """所有已发布文章"""
-    posts = Post.objects.filter(published_date__isnull=False).prefetch_related(
+    posts = Post.objects.annotate(num_comment=Count('comment')).filter(
+        published_date__isnull=False).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 
 def post_list_by_tag(request, tag):
     """根据标签列出已发布文章"""
-    posts = Post.objects.filter(published_date__isnull=False, tags__name=tag).prefetch_related(
+    posts = Post.objects.annotate(num_comment=Count('comment')).filter(
+        published_date__isnull=False, tags__name=tag).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
     return render(request, 'blog/post_list.html',
                   {'posts': posts, 'list_header': '文章标签 \'{}\''.format(tag)})
@@ -26,7 +28,8 @@ def post_list_by_tag(request, tag):
 
 def post_list_by_category(request, cg):
     """根据目录列表已发布文章"""
-    posts = Post.objects.filter(published_date__isnull=False, category__name=cg).prefetch_related(
+    posts = Post.objects.annotate(num_comment=Count('comment')).filter(
+        published_date__isnull=False, category__name=cg).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
     return render(request, 'blog/post_list.html',
                   {'posts': posts, 'list_header': '\'{}\' 分类的存档'.format(cg)})
@@ -34,8 +37,9 @@ def post_list_by_category(request, cg):
 
 def post_list_by_ym(request, y, m):
     """根据年月份列出已发布文章"""
-    posts = Post.objects.filter(published_date__isnull=False, published_date__year=y,
-                                published_date__month=m).prefetch_related(
+    posts = Post.objects.annotate(num_comment=Count('comment')).filter(
+        published_date__isnull=False, published_date__year=y,
+        published_date__month=m).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
     return render(request, 'blog/post_list.html',
                   {'posts': posts, 'list_header': '{0}年{1}月 的存档'.format(y, m)})
@@ -48,7 +52,7 @@ def post_detail(request, pk):
         post.save()
     form = CommentForm()
     return render(request, 'blog/post_detail.html',
-                  {'post': post, 'form':form, 'comments': post.comment_set.all()})
+                  {'post': post, 'form': form, 'comments': post.comment_set.all()})
 
 
 def add_comment(request, pk):
