@@ -13,7 +13,13 @@
                        onclick="return confirm('确定发布文章吗？');">发布</a>
                 {% endif %}
             {% endif %}
-            <span class="comments"><a href="#" title="查看文章评论">没有评论</a></span>
+            <span class="comments">
+                {% if comments %}
+                    {{ comments|length }} 条评论
+                {% else %}
+                    没有评论
+                {% endif %}
+            </span>
             <span class="comments"> {{ post.click }} 人阅读&nbsp;&nbsp;</span>
             {% if user.is_authenticated %}
                 <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">
