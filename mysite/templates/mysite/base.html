@@ -31,6 +31,60 @@
     {% endif %}
     <h1><a href="{% url 'blog.views.post_list' %}">Simple Blog</a></h1>
 </div>
+<div id="navigation">
+    <!-- menus START -->
+    <ul id="menus">
+        <li class="page_item"><a class="home" title="首页" href="{% url 'blog.views.post_list' %}">首页</a></li>
+        <li class="page_item page-item-2"> <a href="#">开心一刻</a></li>
+        <li class="page_item page-item-17"><a href="#">留言小本</a></li>
+        <li class="page_item page-item-19"><a href="#">关于本站</a></li>
+        <li class="page_item page-item-22"><a href="#">关于作者</a></li>
+        <li><a class="lastmenu" href="javascript:void(0);"></a></li>
+    </ul>
+    <!-- menus END -->
+    <!-- searchbox START -->
+    <div id="searchbox">
+        <form action="{% url 'blog.views.post_list' %}" method="get">
+            <div class="content">
+                <label>
+                    <input type="text" class="textfield searchtip" name="s" size="24" value="">
+                </label>
+                <input type="submit" class="button" value="">
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript">
+        //<![CDATA[
+        var searchbox = MGJS.$("searchbox");
+        var searchtxt = MGJS.getElementsByClassName("textfield", "input", searchbox)[0];
+        var searchbtn = MGJS.getElementsByClassName("button", "input", searchbox)[0];
+        var tiptext = "请输入关键字...";
+        if (searchtxt.value == "" || searchtxt.value == tiptext) {
+            searchtxt.className += " searchtip";
+            searchtxt.value = tiptext;
+        }
+        searchtxt.onfocus = function (e) {
+            if (searchtxt.value == tiptext) {
+                searchtxt.value = "";
+                searchtxt.className = searchtxt.className.replace(" searchtip", "");
+            }
+        };
+        searchtxt.onblur = function (e) {
+            if (searchtxt.value == "") {
+                searchtxt.className += " searchtip";
+                searchtxt.value = tiptext;
+            }
+        };
+        searchbtn.onclick = function (e) {
+            if (searchtxt.value == "" || searchtxt.value == tiptext) {
+                return false;
+            }
+        };
+        //]]>
+    </script>
+    <!-- searchbox END -->
+    <div class="fixed"></div>
+</div>
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-7" style="padding-right:18px;">
@@ -58,24 +112,25 @@
                     <h3>近期评论</h3>
                     <ul id="recentcomments">
                         {% for recent_comment in RECENT_COMMENTS %}
-                        <li class="recentcomments">
+                            <li class="recentcomments">
                             <span>
                                 {{ recent_comment.author }}:
                                 <a href="{% url 'blog.views.post_detail' pk=recent_comment.post.id %}">
                                     {{ recent_comment.post.title }}
                                 </a>
                             </span>
-                        </li>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
                 <div id="tag_cloud-2" class="widget widget_tag_cloud">
                     <h3>标签</h3>
+
                     <div class="tagcloud">
                         {% for name, num, size in TAGS %}
-                        <a href="{% url 'blog.views.post_list_by_tag' tag=name %}"
-                           class="tag-link-20" title="{{ num }}个话题"
-                           style="font-size: {{ size }}pt;">{{ name }}</a>
+                            <a href="{% url 'blog.views.post_list_by_tag' tag=name %}"
+                               class="tag-link-20" title="{{ num }}个话题"
+                               style="font-size: {{ size }}pt;">{{ name }}</a>
                         {% endfor %}
                     </div>
                 </div>
@@ -83,10 +138,10 @@
                     <h3>分类目录</h3>
                     <ul>
                         {% for ca in CATEGORIES %}
-                        <li class="cat-item cat-item-10">
-                            <a href="{% url 'blog.views.post_list_by_category' cg=ca.name %}"
-                               title="{{ ca.name }}">{{ ca.name }}</a>
-                        </li>
+                            <li class="cat-item cat-item-10">
+                                <a href="{% url 'blog.views.post_list_by_category' cg=ca.name %}"
+                                   title="{{ ca.name }}">{{ ca.name }}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -94,10 +149,10 @@
                     <h3>文章归档</h3>
                     <ul>
                         {% for ar in ARCHIVES %}
-                        <li>
-                            <a href="{% url 'blog.views.post_list_by_ym' y=ar.year m=ar.month %}">
-                                {{ ar.year }}年{{ ar.month }}月</a>&nbsp;({{ ar.number }})
-                        </li>
+                            <li>
+                                <a href="{% url 'blog.views.post_list_by_ym' y=ar.year m=ar.month %}">
+                                    {{ ar.year }}年{{ ar.month }}月</a>&nbsp;({{ ar.number }})
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -123,10 +178,13 @@
     <div class="col-md-10">
         <div id="footer">
             <a id="gotop" href="#" onclick="MGJS.goTop();return false;">回到顶部</a>
-            <div id="copyright">版权所有 © 2014 <a href="http://www.pycoding.com/">野猪林</a>	</div>
+
+            <div id="copyright">版权所有 © 2014 <a href="http://www.pycoding.com/">野猪林</a></div>
             <div id="themeinfo">页面设计由 <a href="http://www.pycoding.com/">熊能</a> 提供, 通过
                 <a href="http://validator.w3.org/check?uri=referer">XHTML 1.1</a>
-                和 <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">CSS 3</a> 验证.	</div>
+                和 <a href="http://jigsaw.w3.org/css-validator/check/referer?profile=css3">CSS 3</a>
+                验证.
+            </div>
         </div>
     </div>
 </div>
