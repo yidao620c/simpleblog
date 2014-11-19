@@ -5,6 +5,7 @@ from .forms import PostForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
+from django.db import connection
 from django.db.models import Count
 
 
@@ -29,10 +30,10 @@ def post_list_by_category(request, cg):
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 
-def post_list_by_month(request, month):
-    """根据月份列出已发布文章"""
-    posts = Post.objects.filter(published_date__isnull=False,
-                                published_date__month=month).prefetch_related(
+def post_list_by_ym(request, y, m):
+    """根据年月份列出已发布文章"""
+    posts = Post.objects.filter(published_date__isnull=False, published_date__year=y,
+                                published_date__month=m).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
     return render(request, 'blog/post_list.html', {'posts': posts})
 
@@ -123,5 +124,4 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('blog.views.post_list')
-
 

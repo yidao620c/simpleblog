@@ -88,9 +88,11 @@
                 <div id="archives-2" class="widget widget_archive">
                     <h3>文章归档</h3>
                     <ul>
+                        {% for ar in ARCHIVES %}
                         <li>
-                            <a href="#">2014年十一月</a>&nbsp;(42)
+                            <a href="#">{{ ar.year }}年{{ ar.month }}月</a>&nbsp;({{ ar.number }})
                         </li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div id="meta-2" class="widget widget_meta">
