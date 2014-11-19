@@ -46,16 +46,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'mysite.urls'
-
-WSGI_APPLICATION = 'mysite.wsgi.application'
-
-# TEMPLATE_DIRS
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'mysite/templates'),
-    os.path.join(BASE_DIR, 'blog/templates'),
-)
-
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.contrib.auth.context_processors.auth",
     "django.core.context_processors.debug",
@@ -65,6 +55,16 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.contrib.messages.context_processors.messages",
     "blog.commons.context_processors.custom_proc",
+)
+
+ROOT_URLCONF = 'mysite.urls'
+
+WSGI_APPLICATION = 'mysite.wsgi.application'
+
+# TEMPLATE_DIRS
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'mysite/templates'),
+    os.path.join(BASE_DIR, 'blog/templates'),
 )
 
 # Database
@@ -81,15 +81,11 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
 
 LANGUAGE_CODE = 'zh-cn'
-
 TIME_ZONE = 'Asia/Shanghai'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
-
+DEFAULT_CHARSET = 'utf-8'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/

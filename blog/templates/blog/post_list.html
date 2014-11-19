@@ -1,9 +1,11 @@
 {% extends 'mysite/base.html' %}
 {% block content %}
+    {% if list_header %}
+        <div class="box">{{ list_header }}</div>
+    {% endif %}
     {% for post in posts %}
         <div class="post">
             <h2><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
-
             <div class="info">
                 <span class="date">{{ post.published_date|date:'Y年m月d日' }}</span>
             <span class="comments">

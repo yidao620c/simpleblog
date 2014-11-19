@@ -22,5 +22,6 @@ if __name__ == '__main__':
     print(tag_font({'校园': 3, 'python': 9, 'java': 1, '哈哈': 2}))
     for a,b,c in tag_font({'校园': 3, 'python': 9, 'java': 1, '哈哈': 2}):
         print(a,b,c)
-
-
+    import datetime
+    import pytz
+    print(datetime.time(tzinfo=pytz.timezone('Asia/Shanghai')).tzname())

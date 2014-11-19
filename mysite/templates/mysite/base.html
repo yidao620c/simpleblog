@@ -90,7 +90,8 @@
                     <ul>
                         {% for ar in ARCHIVES %}
                         <li>
-                            <a href="#">{{ ar.year }}年{{ ar.month }}月</a>&nbsp;({{ ar.number }})
+                            <a href="{% url 'blog.views.post_list_by_ym' y=ar.year m=ar.month %}">
+                                {{ ar.year }}年{{ ar.month }}月</a>&nbsp;({{ ar.number }})
                         </li>
                         {% endfor %}
                     </ul>
@@ -100,7 +101,7 @@
                     <ul>
                         <li><a href="/admin">管理站点</a></li>
                         <li>
-                            <a href="/logout">登出</a>
+                            <a href="{% url 'django.contrib.auth.views.logout' %}">登出</a>
                         </li>
                         <li><a href="#">文章<abbr title="RSS">RSS</abbr></a></li>
                     </ul>
