@@ -13,4 +13,5 @@ urlpatterns = patterns(
     url(r'^drafts/$', post_draft_list, name='post_draft_list'),
     url(r'^post/(?P<pk>[0-9]+)/publish/$', post_publish, name='post_publish'),
     url(r'^post/(?P<pk>[0-9]+)/remove/$', post_remove, name='post_remove'),
+    url(r'^comment/add/(?P<pk>[0-9]+)/$', add_comment, name='add_comment'),
 )

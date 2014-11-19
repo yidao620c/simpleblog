@@ -54,4 +54,4 @@ class Comment(models.Model):
     post = models.ForeignKey(Post)
 
     def __str__(self):
-        return '{0}发表在{1}'.format(self.author, self.post.title)
+        return '{0}: {1}'.format(self.author, self.post.title)

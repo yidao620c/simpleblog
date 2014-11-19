@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .models import Post, Comment, Tag, Category
 from django.shortcuts import render, get_object_or_404
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
@@ -46,11 +46,24 @@ def post_detail(request, pk):
     if post.published_date:
         post.click += 1
         post.save()
-    return render(request, 'blog/post_detail.html', {'post': post})
+    form = CommentForm()
+    return render(request, 'blog/post_detail.html',
+                  {'post': post, 'form':form, 'comments': post.comment_set.all()})
+
+
+def add_comment(request, pk):
+    """添加评论"""
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post_id = pk
+        comment.save()
+        return redirect('blog.views.post_detail', pk=pk)
 
 
 @login_required
 def post_new(request):
+    """新建文章"""
     if request.method == "POST":
         form = PostForm(request.POST)
         if form.is_valid():
@@ -78,6 +91,7 @@ def post_new(request):
 
 @login_required
 def post_edit(request, pk):
+    """更新文章"""
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
         form = PostForm(request.POST, instance=post)

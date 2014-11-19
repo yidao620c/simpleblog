@@ -25,3 +25,4 @@ if __name__ == '__main__':
     import datetime
     import pytz
     print(datetime.time(tzinfo=pytz.timezone('Asia/Shanghai')).tzname())
+    print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))

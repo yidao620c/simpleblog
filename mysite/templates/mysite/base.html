@@ -59,7 +59,12 @@
                     <ul id="recentcomments">
                         {% for recent_comment in RECENT_COMMENTS %}
                         <li class="recentcomments">
-                            <span>{{ recent_comment }}</span>
+                            <span>
+                                {{ recent_comment.author }}:
+                                <a href="{% url 'blog.views.post_detail' pk=recent_comment.post.id %}">
+                                    {{ recent_comment.post.title }}
+                                </a>
+                            </span>
                         </li>
                         {% endfor %}
                     </ul>

@@ -612,7 +612,7 @@ textarea {
 #pagenavi,
 #postnavi {
 	border-top:1px solid #CCC;
-	margin:10px -5px 0;
+	margin:10px -5px 8px;
 	padding:10px 5px 0;
 }
 #pagenavi {
@@ -931,7 +931,7 @@ a#gotop {
 	margin-top:10px;
 }
 .comment .name {
-	width:67px;
+	width:82px;
 	padding-right:12px;
 	font-weight:bold;
 	overflow:hidden;

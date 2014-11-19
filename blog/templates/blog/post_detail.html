@@ -3,13 +3,14 @@
 {% block content %}
     <div class="post">
         <h2>{{ post.title }}</h2>
+
         <div class="info">
             {% if post.published_date %}
                 <span class="date">{{ post.published_date|date:'Y年m月d日' }}</span>
             {% else %}
                 {% if user.is_authenticated %}
                     <a class="btn btn-default" href="{% url 'blog.views.post_publish' pk=post.pk %}"
-                            onclick="return confirm('确定发布文章吗？');">发布</a>
+                       onclick="return confirm('确定发布文章吗？');">发布</a>
                 {% endif %}
             {% endif %}
             <span class="comments"><a href="#" title="查看文章评论">没有评论</a></span>
@@ -19,7 +20,7 @@
                     <span class="glyphicon glyphicon-pencil"></span>
                 </a>
                 <a class="btn btn-default" href="{% url 'post_remove' pk=post.pk %}"
-                        onclick="return confirm('确定删除文章吗？');">
+                   onclick="return confirm('确定删除文章吗？');">
                     <span class="glyphicon glyphicon-remove"></span>
                 </a>
             {% endif %}
@@ -42,4 +43,81 @@
             </span>
         </div>
     </div>
+
+    <div id="commentlist">
+        {% if not comments %}
+            <ol id="thecomments">
+                <li class="messagebox">本文目前尚无任何评论.</li>
+            </ol>
+        {% else %}
+            <ol id="thecomments">
+                {% for comment in comments %}
+                    <li class="comment regularcomment">
+                        <div class="author">
+                            <div class="pic">
+                                <img src="http://yidaospace.qiniudn.com/avatar/9655bd49005892529ea4fafd625aaaf3?s=32&amp;d=&amp;r=G"
+                                     class="avatar avatar-32 photo" height="32" width="32">
+                            </div>
+                            <div class="name">{{ comment.author }}</div>
+                        </div>
+                        <div class="info">
+                            <div class="date">{{ comment.author|date:'Y年m月d日H:M' }}</div>
+                            <div class="act"></div>
+                            <div class="fixed"></div>
+                            <div class="content">
+                                <div id="commentbody-3">
+                                    <p>{{ comment.text|truncatechars:100|linebreaks }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fixed"></div>
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
+        <!-- comments END -->
+        <div class="fixed"></div>
+    </div>
+    <form action="{% url 'blog.views.add_comment' pk=post.pk %}" method="POST" id="commentform">
+        {% csrf_token %}
+        <div id="respond">
+            <div id="author_info">
+                <div class="row" style="margin-left:0">
+                    <input type="text" name="author" id="author" class="textfield"
+                           value="" size="24" tabindex="1">
+                    <label for="author" class="small">昵称 (必填)</label>
+                </div>
+                <div class="row" style="margin-left:0">
+                    <input type="text" name="email" id="email" class="textfield"
+                           value="" size="24" tabindex="2">
+                    <label for="email" class="small">电子邮箱 (我们会为您保密) (必填)</label>
+                </div>
+                <div class="row" style="margin-left:0">
+                    <input type="text" name="" id="url" class="textfield"
+                           value="" size="24" tabindex="3">
+                    <label for="url" class="small">网址</label>
+                </div>
+            </div>
+            <!-- comment input -->
+            <div class="row" style="margin-left:-7">
+                <label for="comment"></label>
+                <textarea name="text" id="comment" tabindex="4" rows="8" cols="50"></textarea>
+            </div>
+            <!-- comment submit and rss -->
+            <div id="submitbox">
+                <div class="submitbutton">
+                    <input name="submit" type="submit" id="submit" class="button" tabindex="5"
+                           value="提交评论">
+                </div>
+                <div class="fixed"></div>
+            </div>
+        </div>
+    </form>
+    <div id="postnavi">
+{#        <span class="prev"><a href="#" rel="next"></a></span>#}
+{#		<span class="next"><a href="#" rel="prev"></a></span>#}
+        <span class=""><a href="#" rel=""></a></span>
+		<span class=""><a href="#" rel=""></a></span>
+		<div class="fixed"></div>
+	</div>
 {% endblock %}
