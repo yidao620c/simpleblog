@@ -7,7 +7,7 @@ http://yidao620c.iteye.com/blog/2153573
 ## 演示地址
 https://yidaoblog.herokuapp.com/
 
-![最新效果图](http://yidaospace.qiniudn.com/capture.png "最新效果图")
+![最新效果图](http://yidaospace.qiniudn.com/capture.jpg "最新效果图")
 
 -----------------------------------------------------
 ## How to Contribute
