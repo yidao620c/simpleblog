@@ -1,7 +1,7 @@
 .page-header {
     background-color: #80a6ed;
     padding: 20px 20px 20px 40px;
-    width: 1111px;
+    width: 72%;
     margin: 0 auto 1px;
 }
 
@@ -314,7 +314,7 @@ textarea {
 #navigation {
     background: #FFF;
     border-bottom: 1px solid #A6A6A6;
-    width: 1111px;
+    width: 72%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -759,7 +759,7 @@ textarea {
 /* sidebar START */
 #sidebar {
     background: #F7F7F7 url(../img/sidebar_shadow.gif) top repeat-x;
-    width: 318px;
+    width: 110%;
     float: right;
     font-size: 95%;
     line-height: 145%;
@@ -1591,11 +1591,11 @@ a#gotop {
 }
 
 .col-md-1 {
-    width: 14.8%;
+    width: 13.8%;
 }
 
 .col-md-7 {
-    width: 51.333333%;
+    width: 53.333333%;
 }
 
 .col-md-3 {
@@ -1603,7 +1603,7 @@ a#gotop {
 }
 
 .col-md-10 {
-    width: 71.333333%;
+    width: 73.333333%;
 }
 
 .row {
