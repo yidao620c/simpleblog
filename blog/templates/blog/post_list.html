@@ -1,4 +1,5 @@
 {% extends 'mysite/base.html' %}
+{% load blog_tags %}
 {% block content %}
     {% if list_header %}
         <div class="box">{{ list_header }}</div>
@@ -8,21 +9,24 @@
             <h2><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
             <div class="info">
                 <span class="date">{{ post.published_date|date:'Y年m月d日' }}</span>
-            <span class="comments">
-                {% if post.num_comment > 0 %}
-                    {{ post.num_comment }} 条评论
-                {% else %}
-                    没有评论
-                {% endif %}
-            </span>
-            <span class="comments">
-                {{ post.click }} 人阅读&nbsp;&nbsp;
-            </span>
-
+                <span class="comments">
+                    {% if post.num_comment > 0 %}
+                        {{ post.num_comment }} 条评论
+                    {% else %}
+                        没有评论
+                    {% endif %}
+                </span>
+                <span class="comments">
+                    {{ post.click }} 人阅读&nbsp;&nbsp;
+                </span>
                 <div class="fixed"></div>
             </div>
             <div class="content">
-                <p>{{ post.text|truncatechars:300|linebreaks }}</p>
+                <p>
+                    {% autoescape off %}
+                        {{ post.text|more:post.id }}
+                    {% endautoescape %}
+                </p>
             </div>
             <div class="under">
                 <span class="categories">分类: </span>

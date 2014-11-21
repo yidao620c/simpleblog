@@ -1,5 +1,5 @@
 {% extends 'mysite/base.html' %}
-
+{% load blog_tags %}
 {% block content %}
     {% for post in posts %}
         <div class="post">
@@ -11,7 +11,11 @@
                 <div class="fixed"></div>
             </div>
             <div class="content">
-                <p>{{ post.text|truncatechars:300|linebreaks }}</p>
+                <p>
+                    {% autoescape off %}
+                        {{ post.text|more:post.id }}
+                    {% endautoescape %}
+                </p>
             </div>
             <div class="under">
                 <span class="categories">分类: </span>
