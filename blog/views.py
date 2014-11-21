@@ -9,6 +9,7 @@ from django.db import connection
 from django.db.models import Count
 import qiniu
 
+
 def post_list(request):
     """所有已发布文章"""
     posts = Post.objects.annotate(num_comment=Count('comment')).filter(
