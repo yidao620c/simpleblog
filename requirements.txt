@@ -4,3 +4,5 @@ pytz==2014.9
 gunicorn==19.1.1
 whitenoise==1.0.3
 psycopg2==2.5.4
+requests==2.4.3
+qiniu==7.0.0

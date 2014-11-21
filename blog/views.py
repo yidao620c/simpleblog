@@ -7,7 +7,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.db.models import Count
-
+import qiniu
 
 def post_list(request):
     """所有已发布文章"""
@@ -145,4 +145,18 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('blog.views.post_list')
+
+
+@login_required
+def uptoken(request):
+    qiniu.conf.ACCESS_KEY = "your access_key"
+    qiniu.conf.SECRET_KEY = "your secret_key"
+    policy = qiniu.rs.PutPolicy('yidaoblog')
+    token= policy.token()
+    return dict(token=token)
+
+
+@login_required
+def imgmanage(request):
+    pass
 

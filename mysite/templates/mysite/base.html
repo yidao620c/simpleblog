@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
     <!-- Blog CSS-->
     <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link type="text/css" rel="stylesheet" href="{% static 'syntaxhighlighter/styles/shCoreDefault.css' %}"/>
+    <script type="text/javascript" src="{% static 'syntaxhighlighter/scripts/shCore.js' %}"></script>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
     <script src="{% static 'js/base.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block header %}
+    {% endblock %}
     <title>Simple Blog</title>
 </head>
 <body class="customize-support">
@@ -34,11 +39,21 @@
 <div id="navigation">
     <!-- menus START -->
     <ul id="menus">
-        <li class="page_item"><a class="home" title="首页" href="{% url 'blog.views.post_list' %}">首页</a></li>
-        <li class="page_item page-item-2"> <a href="#">开心一刻</a></li>
-        <li class="page_item page-item-17"><a href="#">留言小本</a></li>
-        <li class="page_item page-item-19"><a href="#">关于本站</a></li>
-        <li class="page_item page-item-22"><a href="#">关于作者</a></li>
+        <li class="page_item">
+            <a class="home" title="首页" href="{% url 'blog.views.post_list' %}">首页</a>
+        </li>
+        <li class="page_item page-item-2">
+            <a href="#">开心一刻</a>
+        </li>
+        <li class="page_item page-item-17">
+            <a href="#">留言小本</a>
+        </li>
+        <li class="page_item page-item-19">
+            <a href="#">关于本站</a>
+        </li>
+        <li class="page_item page-item-22">
+            <a href="#">关于作者</a>
+        </li>
         <li><a class="lastmenu" href="javascript:void(0);"></a></li>
     </ul>
     <!-- menus END -->
@@ -188,6 +203,16 @@
         </div>
     </div>
 </div>
+
+<script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushJScript.js' %}"></script>
+<script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushBash.js' %}"></script>
+<script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushPhp.js' %}"></script>
+<script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushJava.js' %}"></script>
+<script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushSql.js' %}"></script>
+<script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushXml.js' %}"></script>
+<script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushPython.js' %}"></script>
+<script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushCss.js' %}"></script>
+<script class="javascript" src="{% static 'syntaxhighlighter/scripts/shBrushCpp.js' %}"></script>
 </body>
 </html>
 

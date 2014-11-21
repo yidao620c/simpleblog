@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Hello SyntaxHighlighter</title>
+    <script type="text/javascript" src="scripts/shCore.js"></script>
+    <script type="text/javascript" src="scripts/shBrushJScript.js"></script>
+    <link type="text/css" rel="stylesheet" href="styles/shCoreDefault.css"/>
+    <script type="text/javascript">SyntaxHighlighter.all();</script>
+</head>
+
+<body style="background: white; font-family: Helvetica">
+
+<h1>Hello SyntaxHighlighter</h1>
+<pre class="brush: js;">
+function helloSyntaxHighlighter()
+{
+	return "hi!";
+}
+</pre>
+
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">
+def add_comment(request, pk):
+    """添加评论"""
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        comment = form.save(commit=False)
+        comment.post_id = pk
+        comment.save()
+        return redirect('blog.views.post_detail', pk=pk)
+</pre>
+<p>&nbsp;</p>
+
+<script class="javascript" src="scripts/shBrushCSharp.js"></script>
+<script class="javascript" src="scripts/shBrushPhp.js"></script>
+<script class="javascript" src="scripts/shBrushJScript.js"></script>
+<script class="javascript" src="scripts/shBrushJava.js"></script>
+<script class="javascript" src="scripts/shBrushVb.js"></script>
+<script class="javascript" src="scripts/shBrushSql.js"></script>
+<script class="javascript" src="scripts/shBrushXml.js"></script>
+<script class="javascript" src="scripts/shBrushDelphi.js"></script>
+<script class="javascript" src="scripts/shBrushPython.js"></script>
+<script class="javascript" src="scripts/shBrushRuby.js"></script>
+<script class="javascript" src="scripts/shBrushCss.js"></script>
+<script class="javascript" src="scripts/shBrushCpp.js"></script>
+</body>
+</html>
