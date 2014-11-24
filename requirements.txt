@@ -5,4 +5,5 @@ gunicorn==19.1.1
 whitenoise==1.0.3
 psycopg2==2.5.4
 requests==2.4.3
+django-pagination-py3==1.1.1
 qiniu==7.0.0

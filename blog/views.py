@@ -134,9 +134,10 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             # 开始处理标签
-            tags = request.POST['tags'].split(',')
+            ptags = request.POST['tags'].strip()
             all_tags = []
-            if tags and len(tags) > 0:
+            if ptags:
+                tags = ptags.split(',')
                 for tag in tags:
                     try:
                         t = Tag.objects.get(name=tag)
@@ -163,9 +164,10 @@ def post_edit(request, pk):
             post = form.save(commit=False)
             post.author = request.user
             # 开始处理标签
-            tags = request.POST['tags'].split(',')
+            ptags = request.POST['tags'].strip()
             all_tags = []
-            if tags and len(tags) > 0:
+            if ptags:
+                tags = ptags.split(',')
                 for tag in tags:
                     try:
                         t = Tag.objects.get(name=tag)
