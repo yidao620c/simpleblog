@@ -9,6 +9,8 @@ from django.db import connection
 from django.db.models import Count
 from datetime import datetime, timedelta
 from django.http import Http404
+from django.http import HttpResponse
+import json
 import qiniu
 
 
@@ -69,7 +71,7 @@ def post_detail(request, pk):
                 "bad": """
                 SELECT COUNT(*)
                 FROM blog_evaluate
-                WHERE evaluate=-1 and post_id={0}
+                WHERE evaluate=0 and post_id={0}
                 """.format(pk),
                 "ip_count": """
                 SELECT COUNT(*)
@@ -88,8 +90,29 @@ def post_detail(request, pk):
                   {'post': post, 'form': form, 'comments': post.comment_set.all()})
 
 
-def evaluate(request, postid, ev):
-    pass
+def evaluate(request, pk, ev):
+    """顶：1  踩：0"""
+    client_ip = get_client_ip(request)
+    if Evaluate.objects.filter(ip=client_ip, post__id=pk).count() > 0:
+        raise Http404()
+    ev_model = Evaluate(ip=client_ip, evaluate=ev, post_id=pk)
+    ev_model.save()
+    p = Post.objects.extra(
+        select={
+            "good": """
+                SELECT COUNT(*)
+                FROM blog_evaluate
+                WHERE evaluate=1 and post_id={0}
+                """.format(pk),
+            "bad": """
+                SELECT COUNT(*)
+                FROM blog_evaluate
+                WHERE evaluate=0 and post_id={0}
+                """.format(pk),
+        }
+    ).get(pk=pk)
+    return HttpResponse(json.dumps(
+        {'success': True, 'good': p.good, 'bad': p.bad}), content_type="application/json")
 
 
 def add_comment(request, pk):

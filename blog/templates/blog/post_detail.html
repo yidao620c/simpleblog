@@ -1,7 +1,30 @@
 {% extends 'mysite/base.html' %}
-<style type="text/css">
-</style>
+{% load staticfiles %}
 {% block content %}
+    <script type="text/javascript">
+        function digg(post_id, evaluate) {
+            var gooddivHtml = $('#gooddiv').html();
+            var baddivHtml = $('#baddiv').html();
+            $('#gooddiv').html("<img src='/static/img/spinner.gif'/>");
+            $('#baddiv').html("<img src='/static/img/spinner.gif'/>");
+            $.ajax({
+                url: "/post/" + post_id + "/" + evaluate + "/evaluate",
+                type: "get",
+                //data: {},
+                datatype: "json",
+                success: function (data) {
+                    var gstr = '<strong>' + data['good'] + '</strong><br/>顶';
+                    var bstr = '<strong>' + data['bad'] + '</strong><br/>踩';
+                    $('#gooddiv').empty().addClass("digged").html(gstr);
+                    $('#baddiv').empty().addClass("digged").html(bstr);
+                    $("#digg_bottom").find("a").contents().unwrap();
+                },
+                error: function (data) {
+                    alert("error: " + data);
+                }
+            });
+        }
+    </script>
     <div class="post">
         <h2>{{ post.title }}</h2>
 
@@ -57,16 +80,25 @@
         </div>
     </div>
     <div id="digg_bottom">
-        <a href="#" onclick="digg({{ post.id }}, 1);return false;">
-            <div {% if post.ip_count %} class="digged"{% endif %}>
-                <strong>{{ post.good }}</strong> <br>顶
+        {% if post.ip_count %}
+            <div id="gooddiv" class="digged">
+                <strong id="good">{{ post.good }}</strong> <br>顶
             </div>
-        </a>
-        <a href="#" onclick="digg({{ post.id }}, -1);return false;">
-            <div {% if post.ip_count %} class="digged"{% endif %}>
-                <strong>{{ post.bad }}</strong> <br>踩
+            <div id="baddiv" class="digged">
+                <strong id="bad">{{ post.bad }}</strong> <br>踩
             </div>
-        </a>
+        {% else %}
+            <a href="#" onclick="digg({{ post.id }}, 1);return false;">
+                <div id="gooddiv" {% if post.ip_count %} class="digged"{% endif %}>
+                    <strong id="good">{{ post.good }}</strong> <br>顶
+                </div>
+            </a>
+            <a href="#" onclick="digg({{ post.id }}, 0);return false;">
+                <div id="baddiv" {% if post.ip_count %} class="digged"{% endif %}>
+                    <strong id="bad">{{ post.bad }}</strong> <br>踩
+                </div>
+            </a>
+        {% endif %}
     </div>
 
     <div id="commentlist">
