@@ -102,6 +102,29 @@
         return matchingElements;
     }
 
+    function digg(post_id, evaluate) {
+        var url = '';
+        var small_button = '';
+        if (small_button)
+            $('d' + id).innerHTML = "<h3><img src='/static/img/spinner.gif'/><br/><span>...</span></h3>";
+        if ($('digg_bottom')) {
+            $$('#digg_bottom div').each(function (div) {
+                div.innerHTML = "<img src='/static/img/spinner.gif'/>";
+            });
+            new Ajax.Request(url, {
+                asynchronous: true,
+                evalScripts: true,
+                parameters: {"id": id, "bottom": true, small_button: small_button}
+            });
+        } else {
+            new Ajax.Request(url, {
+                asynchronous: true,
+                evalScripts: true,
+                parameters: {"id": id, small_button: small_button}
+            });
+        }
+    }
+
     window['MGJS'] = {};
     window['MGJS']['$'] = $;
     window['MGJS']['setStyleDisplay'] = setStyleDisplay;

@@ -485,8 +485,7 @@ textarea {
 
 .post {
     padding-bottom: 5px !important;
-    padding-bottom: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     box-shadow: 0px 0px 5px 2px #ccc;
     -moz-box-shadow: 0px 0px 5px 2px #ccc;
     -webkit-box-shadow: 0px 0px 5px 2px #ccc;
@@ -1609,6 +1608,46 @@ a#gotop {
 .row {
     margin-right: 0;
     margin-left: -15px;
+}
+
+div#digg_bottom {
+    display: block;
+    height: 60px;
+    margin: 5px 0;
+    padding-left: 40%;
+}
+
+div#digg_bottom div.digged {
+    background-image: url(../img/digged_bottom.gif);
+    color: #F14E10;
+    cursor: auto;
+}
+
+div#digg_bottom div {
+    width: 72px;
+    height: 60px;
+    background-image: url(../img/digg_bottom.gif);
+    float: left;
+    text-align: center;
+    padding-top: 9px;
+    margin-right: 10px;
+    font-size: 14px;
+    line-height: 25px;
+    cursor: pointer;
+}
+
+div#digg_bottom a {
+    color: #1607D1;
+    text-decoration: none;
+    background: transparent;
+}
+
+div#digg_bottom strong {
+    color: white;
+}
+
+strong, b {
+    font-weight: bold;
 }
 
 /* thread twitter END */

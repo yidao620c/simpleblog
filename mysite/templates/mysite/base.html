@@ -138,9 +138,20 @@
                         {% endfor %}
                     </ul>
                 </div>
+                <div id="recent-posts-2" class="widget widget_recent_entries">
+                    <h3>热门文章</h3>
+                    <ul>
+                        {% for hot_post in HOT_POSTS %}
+                            <li>
+                                <a href="{% url 'blog.views.post_detail' pk=hot_post.pk %}">
+                                    {{ hot_post.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
                 <div id="tag_cloud-2" class="widget widget_tag_cloud">
                     <h3>标签</h3>
-
                     <div class="tagcloud">
                         {% for name, num, size in TAGS %}
                             <a href="{% url 'blog.views.post_list_by_tag' tag=name %}"

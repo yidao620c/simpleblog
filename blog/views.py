@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Post, Comment, Tag, Category
+from .models import Post, Comment, Tag, Category, Evaluate
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm, CommentForm
 from django.core.urlresolvers import reverse
@@ -7,7 +7,18 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.db import connection
 from django.db.models import Count
+from datetime import datetime, timedelta
+from django.http import Http404
 import qiniu
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
 
 
 def post_list(request):
@@ -47,13 +58,38 @@ def post_list_by_ym(request, y, m):
 
 
 def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
+    try:
+        post = Post.objects.extra(
+            select={
+                "good": """
+                SELECT COUNT(*)
+                FROM blog_evaluate
+                WHERE evaluate=1 and post_id={0}
+                """.format(pk),
+                "bad": """
+                SELECT COUNT(*)
+                FROM blog_evaluate
+                WHERE evaluate=-1 and post_id={0}
+                """.format(pk),
+                "ip_count": """
+                SELECT COUNT(*)
+                FROM blog_evaluate
+                WHERE ip='{0}' and post_id={1}
+                """.format(get_client_ip(request), pk),
+            }
+        ).get(pk=pk)
+    except:
+        raise Http404()
     if post.published_date:
         post.click += 1
         post.save()
     form = CommentForm()
     return render(request, 'blog/post_detail.html',
                   {'post': post, 'form': form, 'comments': post.comment_set.all()})
+
+
+def evaluate(request, postid, ev):
+    pass
 
 
 def add_comment(request, pk):
@@ -153,7 +189,7 @@ def uptoken(request):
     qiniu.conf.ACCESS_KEY = "your access_key"
     qiniu.conf.SECRET_KEY = "your secret_key"
     policy = qiniu.rs.PutPolicy('yidaoblog')
-    token= policy.token()
+    token = policy.token()
     return dict(token=token)
 
 

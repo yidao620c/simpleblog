@@ -4,3 +4,4 @@ __pycache__
 staticfiles
 local_settings.py
 db.sqlite3
+migrations

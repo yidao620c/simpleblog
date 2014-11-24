@@ -11,10 +11,10 @@ register = template.Library()
 
 @register.filter
 def more(value, post_id):
-    """通过<!--more-->标签实现文章截取和增加查看全文链接"""
-    more_str = '--more--'
+    """通过[!--more--]标签实现文章截取和增加查看全文链接"""
+    more_str = '[!--more--]'
     if more_str in value:
-        return value.split(more_str)[0] + '<a href="/post/{0}">查看全文</a>'.format(post_id)
+        return value.split(more_str)[0] + '<a href="/post/{0}">查看全文...</a>'.format(post_id)
     return value
 
 

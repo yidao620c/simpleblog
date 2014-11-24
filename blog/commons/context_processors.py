@@ -8,12 +8,19 @@ from .. import models
 from . import utils
 from django.db import connection
 from django.db.models import Count
+from datetime import timedelta
+from django.utils import timezone
 
 # 使用context processro去提供一些context内容中公共的部分，也就是返回一个字典而已。
 def custom_proc(request):
     # 近期文章
     recent_posts = models.Post.objects.filter(
         published_date__isnull=False).order_by('-published_date')[:10]
+    # 热门文章
+    old_month = timezone.now() - timedelta(days=60)
+    hot_posts = models.Post.objects.annotate(num_comment=Count('comment')).filter(
+        published_date__gte=old_month).prefetch_related(
+        'category').prefetch_related('tags').order_by('-click')[:10]
     # 近期评论
     recent_comments = models.Comment.objects.prefetch_related(
         'post').order_by('-created_date')[:10]
@@ -35,6 +42,7 @@ def custom_proc(request):
         ar['month'] = ar['month'].month
     return {
         'RECENT_POSTS': recent_posts,
+        'HOT_POSTS': hot_posts,
         'RECENT_COMMENTS': recent_comments,
         'TAGS': utils.tag_font(tags),
         'CATEGORIES': categories,

@@ -55,3 +55,10 @@ class Comment(models.Model):
 
     def __str__(self):
         return '{0}: {1}'.format(self.author, self.post.title)
+
+
+class Evaluate(models.Model):
+    """文章顶踩"""
+    ip = models.CharField(max_length=40)
+    evaluate = models.IntegerField()
+    post = models.ForeignKey(Post)

@@ -1,5 +1,6 @@
 {% extends 'mysite/base.html' %}
-
+<style type="text/css">
+</style>
 {% block content %}
     <div class="post">
         <h2>{{ post.title }}</h2>
@@ -35,7 +36,7 @@
         <div class="content">
             <p>
                 {% autoescape off %}
-                {{ post.text }}
+                    {{ post.text }}
                 {% endautoescape %}
             </p>
         </div>
@@ -54,6 +55,18 @@
                 {% endfor %}
             </span>
         </div>
+    </div>
+    <div id="digg_bottom">
+        <a href="#" onclick="digg({{ post.id }}, 1);return false;">
+            <div {% if post.ip_count %} class="digged"{% endif %}>
+                <strong>{{ post.good }}</strong> <br>顶
+            </div>
+        </a>
+        <a href="#" onclick="digg({{ post.id }}, -1);return false;">
+            <div {% if post.ip_count %} class="digged"{% endif %}>
+                <strong>{{ post.bad }}</strong> <br>踩
+            </div>
+        </a>
     </div>
 
     <div id="commentlist">
@@ -126,10 +139,11 @@
         </div>
     </form>
     <div id="postnavi">
-{#        <span class="prev"><a href="#" rel="next"></a></span>#}
-{#		<span class="next"><a href="#" rel="prev"></a></span>#}
+        {#        <span class="prev"><a href="#" rel="next"></a></span>#}
+        {#		<span class="next"><a href="#" rel="prev"></a></span>#}
         <span class=""><a href="#" rel=""></a></span>
-		<span class=""><a href="#" rel=""></a></span>
-		<div class="fixed"></div>
-	</div>
+        <span class=""><a href="#" rel=""></a></span>
+
+        <div class="fixed"></div>
+    </div>
 {% endblock %}
