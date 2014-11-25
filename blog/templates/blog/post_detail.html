@@ -79,27 +79,29 @@
             </span>
         </div>
     </div>
-    <div id="digg_bottom">
-        {% if post.ip_count %}
-            <div id="gooddiv" class="digged">
-                <strong id="good">{{ post.good }}</strong> <br>顶
-            </div>
-            <div id="baddiv" class="digged">
-                <strong id="bad">{{ post.bad }}</strong> <br>踩
-            </div>
-        {% else %}
-            <a href="#" onclick="digg({{ post.id }}, 1);return false;">
-                <div id="gooddiv" {% if post.ip_count %} class="digged"{% endif %}>
+    {% if post.published_date %}
+        <div id="digg_bottom">
+            {% if post.ip_count %}
+                <div id="gooddiv" class="digged">
                     <strong id="good">{{ post.good }}</strong> <br>顶
                 </div>
-            </a>
-            <a href="#" onclick="digg({{ post.id }}, 0);return false;">
-                <div id="baddiv" {% if post.ip_count %} class="digged"{% endif %}>
+                <div id="baddiv" class="digged">
                     <strong id="bad">{{ post.bad }}</strong> <br>踩
                 </div>
-            </a>
-        {% endif %}
-    </div>
+            {% else %}
+                <a href="#" onclick="digg({{ post.id }}, 1);return false;">
+                    <div id="gooddiv" {% if post.ip_count %} class="digged"{% endif %}>
+                        <strong id="good">{{ post.good }}</strong> <br>顶
+                    </div>
+                </a>
+                <a href="#" onclick="digg({{ post.id }}, 0);return false;">
+                    <div id="baddiv" {% if post.ip_count %} class="digged"{% endif %}>
+                        <strong id="bad">{{ post.bad }}</strong> <br>踩
+                    </div>
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
 
     <div id="commentlist">
         {% if not comments %}
