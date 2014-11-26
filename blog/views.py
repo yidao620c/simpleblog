@@ -11,7 +11,7 @@ from datetime import datetime, timedelta
 from django.http import Http404
 from django.http import HttpResponse
 import json
-import qiniu
+# import qiniu
 
 
 def get_client_ip(request):
@@ -209,16 +209,16 @@ def post_remove(request, pk):
     return redirect('blog.views.post_list')
 
 
-@login_required
-def uptoken(request):
-    qiniu.conf.ACCESS_KEY = "your access_key"
-    qiniu.conf.SECRET_KEY = "your secret_key"
-    policy = qiniu.rs.PutPolicy('yidaoblog')
-    token = policy.token()
-    return dict(token=token)
-
-
-@login_required
-def imgmanage(request):
-    pass
+# @login_required
+# def uptoken(request):
+#     qiniu.conf.ACCESS_KEY = "your access_key"
+#     qiniu.conf.SECRET_KEY = "your secret_key"
+#     policy = qiniu.rs.PutPolicy('yidaoblog')
+#     token = policy.token()
+#     return dict(token=token)
+#
+#
+# @login_required
+# def imgmanage(request):
+#     pass
 

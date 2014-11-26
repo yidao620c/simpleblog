@@ -82,8 +82,7 @@ DATABASES = {
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.7/topics/i18n/
+# Internationalization https://docs.djangoproject.com/en/1.7/topics/i18n/
 # django-admin.py makemessages -l zh_CN
 # django-admin.py compilemessages
 LANGUAGE_CODE = 'zh-cn'

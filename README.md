@@ -26,6 +26,7 @@ http://my.oschina.net/yidao620c/blog/343174
 5. 全文搜索功能
 6. 引入富文本编辑器，让格式更漂亮，并支持代码高亮等功能
 7. 全面集成redis缓存系统，提升系统速度
+8. i18n国际化
 
 在持续改进过程中，不断的总结学习django框架，QuerySet的熟练使用，模板，全局处理器，静态资源等。
 后面还会引入缓存redis，因为点击率这些非常易变的应该要使用缓存。目前是直接存储数据库，速度有点慢。
@@ -33,10 +34,20 @@ http://my.oschina.net/yidao620c/blog/343174
 
 一个人毕竟精力有限，期待在GitHub上面找到合作者共同完善这个系统。可以fork这个工程然后提交Pull Requests。
 
-## 演示地址
+## 演示地址(用户名/密码：admin/admin)
 https://yidaoblog.herokuapp.com/
 
-![最新效果图](http://yidaospace.qiniudn.com/capture.jpg "最新效果图")
+首页效果：
+![最新效果图1](http://yidaospace.qiniudn.com/simple001.jpg "最新效果图1")
+
+分页效果：
+![最新效果图2](http://yidaospace.qiniudn.com/simple002.jpg "最新效果图2")
+
+富文本编辑器：
+![最新效果图3](http://yidaospace.qiniudn.com/simple003.jpg "最新效果图3")
+
+顶踩功能展示：
+![最新效果图4](http://yidaospace.qiniudn.com/simple004.jpg "最新效果图4")
 
 -----------------------------------------------------
 ## How to Contribute
