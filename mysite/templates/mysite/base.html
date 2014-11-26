@@ -1,6 +1,8 @@
 {% load staticfiles %}
+{% load i18n %}
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     <!-- Optional theme -->
@@ -16,7 +18,7 @@
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     {% block header %}
     {% endblock %}
-    <title>Simple Blog</title>
+    <title>{% trans 'Simple Blog'%}</title>
 </head>
 <body class="customize-support">
 <div class="page-header">
@@ -25,7 +27,7 @@
                 class="glyphicon glyphicon-plus"></span></a>
         <a href="{% url 'post_draft_list' %}" class="top-menu"><span
                 class="glyphicon glyphicon-edit"></span></a>
-        <p class="top-menu" style="font-size: 20pt;">Hello {{ user.username }}
+        <p class="top-menu" style="font-size: 15pt;">{% trans 'Hello'%} {{ user.username }}
             <small>&nbsp;</small>
             <a href="{% url 'django.contrib.auth.views.logout' %}" class="top-menu">
                 <span class="glyphicon glyphicon-log-out"></span></a>
@@ -34,7 +36,7 @@
         <a href="{% url 'django.contrib.auth.views.login' %}" class="top-menu">
             <span class="glyphicon glyphicon-log-in"></span></a>
     {% endif %}
-    <h1><a href="{% url 'blog.views.post_list' %}">Simple Blog</a></h1>
+    <h1><a href="{% url 'blog.views.post_list' %}">{% trans 'Simple Blog'%}</a></h1>
 </div>
 <div id="navigation">
     <!-- menus START -->

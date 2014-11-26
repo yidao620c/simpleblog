@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from django.utils.translation import ugettext_lazy as _
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -21,7 +22,7 @@ SECRET_KEY = 'w%^z6iksml%ys02aw33f+mr3(nuhc8hq$k2p_*4ac=n@t!2*_%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 TEMPLATE_DEBUG = True
 
@@ -83,18 +84,26 @@ DATABASES = {
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
-
+# django-admin.py makemessages -l zh_CN
+# django-admin.py compilemessages
 LANGUAGE_CODE = 'zh-cn'
 TIME_ZONE = 'Asia/Shanghai'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-DEFAULT_CHARSET = 'utf-8'
+LANGUAGES = (
+    ('zh-cn', _('Simplified Chinese')),
+    ('en', _('English')),
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, "locale"),
+)
 
 import dj_database_url
 
