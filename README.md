@@ -40,13 +40,13 @@ https://yidaoblog.herokuapp.com/
 首页效果：
 ![最新效果图1](http://yidaospace.qiniudn.com/simple001.jpg "最新效果图1")
 
-分页效果：
+顶踩功能展示：
 ![最新效果图2](http://yidaospace.qiniudn.com/simple002.jpg "最新效果图2")
 
-富文本编辑器：
+分页效果：
 ![最新效果图3](http://yidaospace.qiniudn.com/simple003.jpg "最新效果图3")
 
-顶踩功能展示：
+富文本编辑器：
 ![最新效果图4](http://yidaospace.qiniudn.com/simple004.jpg "最新效果图4")
 
 -----------------------------------------------------
