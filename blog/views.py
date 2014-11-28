@@ -86,6 +86,7 @@ def post_detail(request, pk):
         post.click += 1
         post.save()
     form = CommentForm()
+    post.text = post.text.replace('[!--more--]', '', 1)
     return render(request, 'blog/post_detail.html',
                   {'post': post, 'form': form, 'comments': post.comment_set.all()})
 
