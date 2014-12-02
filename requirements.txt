@@ -5,3 +5,6 @@ gunicorn==19.1.1
 whitenoise==1.0.3
 psycopg2==2.5.4
 django-pagination-py3==1.1.1
+redis==2.10.3
+django-redis==3.7.2
+APScheduler==3.0.1

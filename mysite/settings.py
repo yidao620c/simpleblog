@@ -10,7 +10,9 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from urllib.parse import urlparse
 from django.utils.translation import ugettext_lazy as _
+import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -104,7 +106,6 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, "locale"),
 )
 
-import dj_database_url
 
 DATABASES['default'] = dj_database_url.config()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -118,6 +119,26 @@ STATICFILES_DIRS = (
 
 LOGIN_REDIRECT_URL = '/'
 
+redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6959'))
+CACHES = {
+    'default': {
+        'BACKEND': 'redis_cache.cache.RedisCache',
+        'LOCATION': '{0}:{1}'.format(redis_url.hostname, redis_url.port),
+        'OPTIONS': {
+            'DB': 0,
+            'PASSWORD': redis_url.password,
+            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
+            'PICKLE_VERSION': -1,  # Use the latest protocol version
+            'SOCKET_TIMEOUT': 60,  # in seconds
+            'IGNORE_EXCEPTIONS': True,
+        }
+    }
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSION_CACHE_ALIAS = 'default'
+
+# 本地开发配置放在local_settings.py中
 try:
     from .local_settings import *
 except ImportError:

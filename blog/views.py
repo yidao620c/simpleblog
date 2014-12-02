@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Post, Comment, Tag, Category, Evaluate
+from .commons import cache_manager
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm, CommentForm
 from django.core.urlresolvers import reverse
@@ -28,6 +29,8 @@ def post_list(request):
     posts = Post.objects.annotate(num_comment=Count('comment')).filter(
         published_date__isnull=False).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
+    for p in posts:
+        p.click = cache_manager.get_click(p)
     return render(request, 'blog/post_list.html', {'posts': posts})
 
 
@@ -36,6 +39,8 @@ def post_list_by_tag(request, tag):
     posts = Post.objects.annotate(num_comment=Count('comment')).filter(
         published_date__isnull=False, tags__name=tag).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
+    for p in posts:
+        p.click = cache_manager.get_click(p)
     return render(request, 'blog/post_list.html',
                   {'posts': posts, 'list_header': '文章标签 \'{}\''.format(tag)})
 
@@ -45,6 +50,8 @@ def post_list_by_category(request, cg):
     posts = Post.objects.annotate(num_comment=Count('comment')).filter(
         published_date__isnull=False, category__name=cg).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
+    for p in posts:
+        p.click = cache_manager.get_click(p)
     return render(request, 'blog/post_list.html',
                   {'posts': posts, 'list_header': '\'{}\' 分类的存档'.format(cg)})
 
@@ -55,6 +62,8 @@ def post_list_by_ym(request, y, m):
         published_date__isnull=False, published_date__year=y,
         published_date__month=m).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
+    for p in posts:
+        p.click = cache_manager.get_click(p)
     return render(request, 'blog/post_list.html',
                   {'posts': posts, 'list_header': '{0}年{1}月 的存档'.format(y, m)})
 
@@ -83,8 +92,8 @@ def post_detail(request, pk):
     except:
         raise Http404()
     if post.published_date:
-        post.click += 1
-        post.save()
+        cache_manager.update_click(post)
+        post.click = cache_manager.get_click(post)
     form = CommentForm()
     post.text = post.text.replace('[!--more--]', '', 1)
     return render(request, 'blog/post_detail.html',

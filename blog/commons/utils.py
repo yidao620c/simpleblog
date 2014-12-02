@@ -4,9 +4,12 @@
 Topic: 帮助类
 Desc : 
 """
+from datetime import datetime, timedelta, time
+import pytz
 
 MIN_TAG = 8
 MAX_TAG = 24
+
 
 
 def tag_font(tags):
@@ -18,11 +21,13 @@ def tag_font(tags):
             for k, v in tags.items()]
 
 
+def seconds(dt):
+    return (dt - datetime(1970, 1, 1)) / timedelta(seconds=1)
+
+
 if __name__ == '__main__':
     print(tag_font({'校园': 3, 'python': 9, 'java': 1, '哈哈': 2}))
     for a,b,c in tag_font({'校园': 3, 'python': 9, 'java': 1, '哈哈': 2}):
         print(a,b,c)
-    import datetime
-    import pytz
-    print(datetime.time(tzinfo=pytz.timezone('Asia/Shanghai')).tzname())
-    print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
+    print(time(tzinfo=pytz.timezone('Asia/Shanghai')).tzname())
+    print(datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
