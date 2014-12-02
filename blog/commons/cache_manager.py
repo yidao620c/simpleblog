@@ -35,8 +35,7 @@ def run_timer():
         RUNNING_TIMER = True
         # 30分钟同步一次文章点击率
         scheduler = BackgroundScheduler()
-        # scheduler.add_job(sync_click, 'interval', minutes=30)
-        scheduler.add_job(sync_click, 'interval', seconds=10)
+        scheduler.add_job(sync_click, 'interval', minutes=30)
         scheduler.start()
 
 
@@ -45,12 +44,10 @@ def sync_click():
     print('同步文章点击数start....')
     for k in REDIS_DB.hkeys('CLICKS'):
         try:
-            p = Post.objects.get(k)
-            print('db_click={0}'.format(p.click))
-            cache_click = get_click(p.id)
-            print('cache_click={0}'.format(cache_click))
+            p = Post.objects.get(pk=k)
+            cache_click = get_click(p)
             if cache_click != p.click:
-                p.click = get_click(p.id)
+                p.click = get_click(p)
                 p.save()
         except:
             pass
