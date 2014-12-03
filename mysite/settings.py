@@ -100,30 +100,28 @@ LANGUAGES = (
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
 LOCALE_PATHS = (
     os.path.join(BASE_DIR, "locale"),
 )
 
-
 DATABASES['default'] = dj_database_url.config()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
-STATIC_ROOT = 'staticfiles'
 DEBUG = False
-
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
 
 LOGIN_REDIRECT_URL = '/'
 
-redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6959'))
+redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6379'))
 CACHES = {
     'default': {
         'BACKEND': 'redis_cache.cache.RedisCache',
-        'LOCATION': '{0}:{1}'.format(redis_url.hostname, redis_url.port),
+        'LOCATION': '{0}:{1}:{2}'.format(redis_url.hostname, redis_url.port, 0),
         'OPTIONS': {
             'DB': 0,
             'PASSWORD': redis_url.password,
