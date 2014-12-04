@@ -1,8 +1,11 @@
+# coding=utf-8
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.utils.encoding import python_2_unicode_compatible
 
 
+@python_2_unicode_compatible
 class Tag(models.Model):
     """标签"""
     name = models.CharField(max_length=40)
@@ -11,6 +14,7 @@ class Tag(models.Model):
         return self.name
 
 
+@python_2_unicode_compatible
 class Category(models.Model):
     """分类目录"""
     name = models.CharField(max_length=40)
@@ -19,6 +23,7 @@ class Category(models.Model):
         return self.name
 
 
+@python_2_unicode_compatible
 class Post(models.Model):
     # 作者
     author = models.ForeignKey(User)
@@ -45,6 +50,7 @@ class Post(models.Model):
         return self.title
 
 
+@python_2_unicode_compatible
 class Comment(models.Model):
     """评论"""
     author = models.CharField(max_length=20)
@@ -57,8 +63,12 @@ class Comment(models.Model):
         return '{0}: {1}'.format(self.author, self.post.title)
 
 
+@python_2_unicode_compatible
 class Evaluate(models.Model):
     """文章顶踩"""
     ip = models.CharField(max_length=40)
     evaluate = models.IntegerField()
     post = models.ForeignKey(Post)
+
+    def __str__(self):
+        return '{0}: {1}'.format(self.ip, self.evaluate)

@@ -13,10 +13,8 @@ REDIS_DB = get_redis_connection('default')
 
 def update_click(post):
     if REDIS_DB.hexists("CLICKS", post.id):
-        print('REDIS_DB.hexists...' + str(post.id))
         REDIS_DB.hincrby('CLICKS', post.id)
     else:
-        print('REDIS_DB.not_hexists...' + str(post.id))
         REDIS_DB.hset('CLICKS', post.id, post.click + 1)
     run_timer()
 
@@ -52,5 +50,3 @@ def sync_click():
         except:
             pass
     print('同步文章点击数end....')
-
-

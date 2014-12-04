@@ -8,3 +8,4 @@ django-pagination-py3==1.1.1
 redis==2.10.3
 django-redis==3.7.2
 APScheduler==3.0.1
+django-xadmin==0.5.0

@@ -1,3 +1,4 @@
+# coding=utf-8
 from django.shortcuts import render
 from .models import Post, Comment, Tag, Category, Evaluate
 from .commons import cache_manager
@@ -231,4 +232,3 @@ def post_remove(request, pk):
 # @login_required
 # def imgmanage(request):
 #     pass
-
