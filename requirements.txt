@@ -9,6 +9,5 @@ redis==2.10.3
 django-redis==3.7.2
 APScheduler==3.0.1
 django-reversion==1.8.5
-django-crispy-forms==1.4.0
 xlwt==0.7.5
 git+https://github.com/sshwsfc/django-xadmin.git@django1.7
