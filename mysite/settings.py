@@ -1,3 +1,4 @@
+# coding=utf-8
 """
 Django settings for mysite project.
 
@@ -10,11 +11,16 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from urllib.parse import urlparse
+from urlparse import urlparse
 from django.utils.translation import ugettext_lazy as _
 import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+
+ADMINS = (
+    # ('Your Name', 'your_email@example.com'),
+)
+MANAGERS = ADMINS
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -30,12 +36,15 @@ TEMPLATE_DEBUG = True
 
 # Application definition
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.admin',
+    'xadmin',
+    'crispy_forms',
+    'reversion',
     'blog',
     'pagination',
 )
@@ -135,6 +144,43 @@ CACHES = {
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
+
+# A sample logging configuration. The only tangible logging
+# performed by this configuration is to send an email to
+# the site admins on every HTTP 500 error when DEBUG=False.
+# See http://docs.djangoproject.com/en/dev/topics/logging for
+# more details on how to customize your logging configuration.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler'
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        # 'django.db.backends': {
+        # 'handlers': ['console'],
+        #     'level': 'DEBUG',
+        # }
+    }
+}
 
 # 本地开发配置放在local_settings.py中
 try:

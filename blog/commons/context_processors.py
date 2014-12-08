@@ -13,6 +13,9 @@ from django.utils import timezone
 
 # 使用context processro去提供一些context内容中公共的部分，也就是返回一个字典而已。
 def custom_proc(request):
+    # 显示前5个页面，安装porder排序
+    recent_pages = models.Page.objects.filter(
+        published_date__isnull=False).order_by('porder')[:5]
     # 近期文章
     recent_posts = models.Post.objects.filter(
         published_date__isnull=False).order_by('-published_date')[:10]
@@ -41,6 +44,7 @@ def custom_proc(request):
         ar['year'] = ar['year'].year
         ar['month'] = ar['month'].month
     return {
+        'RECENT_PAGES': recent_pages,
         'RECENT_POSTS': recent_posts,
         'HOT_POSTS': hot_posts,
         'RECENT_COMMENTS': recent_comments,

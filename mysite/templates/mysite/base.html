@@ -44,18 +44,11 @@
         <li class="page_item">
             <a class="home" title="首页" href="{% url 'blog.views.post_list' %}">首页</a>
         </li>
-        <li class="page_item page-item-2">
-            <a href="#">开心一刻</a>
-        </li>
-        <li class="page_item page-item-17">
-            <a href="#">留言小本</a>
-        </li>
-        <li class="page_item page-item-19">
-            <a href="#">关于本站</a>
-        </li>
-        <li class="page_item page-item-22">
-            <a href="#">关于作者</a>
-        </li>
+        {% for pg in RECENT_PAGES %}
+            <li class="page_item">
+                <a href="{% url 'blog.views.page_detail' pk=pg.pk %}">{{ pg.title }}</a>
+            </li>
+        {% endfor %}
         <li><a class="lastmenu" href="javascript:void(0);"></a></li>
     </ul>
     <!-- menus END -->
@@ -113,7 +106,7 @@
             <!-- sidebar north START -->
             <div id="northsidebar" class="sidebar">
                 <!-- showcase -->
-                <div id="recent-posts-2" class="widget widget_recent_entries">
+                <div id="recent-posts-1" class="widget widget_recent_entries">
                     <h3>近期文章</h3>
                     <ul>
                         {% for recent_post in RECENT_POSTS %}
@@ -187,10 +180,18 @@
                 <div id="meta-2" class="widget widget_meta">
                     <h3>功能</h3>
                     <ul>
-                        <li><a href="/admin">管理站点</a></li>
+                        {% if user.is_superuser %}
+                        <li><a href="/xadmin">管理站点</a></li>
+                        {% endif %}
+                        {% if user.is_authenticated %}
                         <li>
                             <a href="{% url 'django.contrib.auth.views.logout' %}">登出</a>
                         </li>
+                        {% else %}
+                        <li>
+                            <a href="{% url 'django.contrib.auth.views.login' %}">登录</a>
+                        </li>
+                        {% endif %}
                         <li><a href="#">文章<abbr title="RSS">RSS</abbr></a></li>
                     </ul>
                 </div>

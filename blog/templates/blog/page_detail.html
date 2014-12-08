@@ -1,0 +1,25 @@
+{% extends 'mysite/base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="post">
+        <h2>{{ page.title }}</h2>
+
+        <div class="info">
+            <span class="date">{{ page.published_date|date:'Y年m月d日' }}</span>
+            <div class="fixed"></div>
+        </div>
+        <div class="content">
+            <p>
+                {% autoescape off %}
+                    {{ page.text|linebreaks }}
+                {% endautoescape %}
+            </p>
+        </div>
+    </div>
+
+    <div id="postnavi">
+        <span class=""><a href="#" rel=""></a></span>
+        <span class=""><a href="#" rel=""></a></span>
+        <div class="fixed"></div>
+    </div>
+{% endblock %}

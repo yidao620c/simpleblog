@@ -1,0 +1,19 @@
+/**
+ * plugin.css
+ *
+ * Copyright 2013, Da Zhao
+ * Released under MIT License.
+ *
+ * License: https://github.com/zhaoda/tinymce-upload/blob/master/LICENSE.md
+ * Contributing: https://me.alipay.com/sage6437
+ */
+
+.mce-btn i.mce-i-upload {
+	width: 19px;
+	background: url(upload_icon.png) 0 0 no-repeat;
+}
+
+.mce-btn i.mce-i-upload-disabled {
+	width: 19px;
+	background-position: 0 -16px;
+}
