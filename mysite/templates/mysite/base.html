@@ -44,18 +44,11 @@
         <li class="page_item">
             <a class="home" title="首页" href="{% url 'blog.views.post_list' %}">首页</a>
         </li>
-        <li class="page_item page-item-2">
-            <a href="#">开心一刻</a>
-        </li>
-        <li class="page_item page-item-17">
-            <a href="#">留言小本</a>
-        </li>
-        <li class="page_item page-item-19">
-            <a href="#">关于本站</a>
-        </li>
-        <li class="page_item page-item-22">
-            <a href="#">关于作者</a>
-        </li>
+        {% for pg in RECENT_PAGES %}
+            <li class="page_item">
+                <a href="{% url 'blog.views.page_detail' pk=pg.pk %}">{{ pg.title }}</a>
+            </li>
+        {% endfor %}
         <li><a class="lastmenu" href="javascript:void(0);"></a></li>
     </ul>
     <!-- menus END -->

@@ -1,6 +1,6 @@
 # coding=utf-8
 from django.shortcuts import render
-from .models import Post, Comment, Tag, Category, Evaluate
+from .models import Post, Comment, Tag, Category, Evaluate, Page
 from .commons import cache_manager
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm, CommentForm
@@ -99,6 +99,14 @@ def post_detail(request, pk):
     post.text = post.text.replace('[!--more--]', '', 1)
     return render(request, 'blog/post_detail.html',
                   {'post': post, 'form': form, 'comments': post.comment_set.all()})
+
+
+def page_detail(request, pk):
+    try:
+        page = Page.objects.get(pk=pk)
+    except:
+        raise Http404()
+    return render(request, 'blog/page_detail.html', {'page': page})
 
 
 def evaluate(request, pk, ev):

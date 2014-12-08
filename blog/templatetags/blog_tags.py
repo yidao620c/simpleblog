@@ -22,6 +22,10 @@ def more(value, post_id):
 def lower(value):
     return value.lower()
 
+@register.filter
+def lower(value):
+    return value.lower()
+
 
 @register.tag(name='more')
 def do_more(parser, token):

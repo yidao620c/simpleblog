@@ -34,8 +34,10 @@ http://my.oschina.net/yidao620c/blog/343174
 
 一个人毕竟精力有限，期待在GitHub上面找到合作者共同完善这个系统。可以fork这个工程然后提交Pull Requests。
 
+------------------------------------------
 ## 演示地址(用户名/密码：admin/admin)
 https://yidaoblog.herokuapp.com/
+------------------------------------------
 
 首页效果：
 ![最新效果图1](http://yidaospace.qiniudn.com/simple001.jpg "最新效果图1")

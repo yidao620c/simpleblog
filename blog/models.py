@@ -7,7 +7,10 @@ from django.utils.encoding import python_2_unicode_compatible
 
 @python_2_unicode_compatible
 class Tag(models.Model):
-    """标签"""
+    class Meta:
+        verbose_name = u'标签'
+        verbose_name_plural = u'标签'
+
     name = models.CharField(max_length=40)
 
     def __str__(self):
@@ -16,15 +19,22 @@ class Tag(models.Model):
 
 @python_2_unicode_compatible
 class Category(models.Model):
-    """分类目录"""
+    class Meta:
+        verbose_name = u'分类目录'
+        verbose_name_plural = u'分类目录'
+
     name = models.CharField(max_length=40)
 
     def __str__(self):
         return self.name
 
 
+
 @python_2_unicode_compatible
 class Post(models.Model):
+    class Meta:
+        verbose_name = u'文章'
+        verbose_name_plural = u'文章'
     # 作者
     author = models.ForeignKey(User)
     # 标题
@@ -50,9 +60,12 @@ class Post(models.Model):
         return self.title
 
 
+
 @python_2_unicode_compatible
 class Comment(models.Model):
-    """评论"""
+    class Meta:
+        verbose_name = u'评论'
+        verbose_name_plural = u'评论'
     author = models.CharField(max_length=20)
     email = models.EmailField()
     text = models.TextField()
@@ -65,7 +78,9 @@ class Comment(models.Model):
 
 @python_2_unicode_compatible
 class Evaluate(models.Model):
-    """文章顶踩"""
+    class Meta:
+        verbose_name = u'评分'
+        verbose_name_plural = u'评分'
     ip = models.CharField(max_length=40)
     evaluate = models.IntegerField()
     post = models.ForeignKey(Post)
@@ -76,13 +91,17 @@ class Evaluate(models.Model):
 
 @python_2_unicode_compatible
 class Page(models.Model):
-    """页面"""
+    class Meta:
+        verbose_name = u'页面'
+        verbose_name_plural = u'页面'
     # 作者
     author = models.ForeignKey(User)
     # 标题
     title = models.CharField(max_length=200)
     # 正文
     text = models.TextField()
+    # 排列顺序
+    porder = models.IntegerField(default=0)
     # 创建时间
     created_date = models.DateTimeField(default=timezone.now)
     # 发布时间
