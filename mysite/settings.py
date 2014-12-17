@@ -43,10 +43,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'xadmin',
+    'haystack',
     'crispy_forms',
     'reversion',
-    'blog',
     'pagination',
+    'blog',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -145,6 +146,15 @@ CACHES = {
 SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
 
+# full text search
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
@@ -177,7 +187,7 @@ LOGGING = {
         },
         # 'django.db.backends': {
         # 'handlers': ['console'],
-        #     'level': 'DEBUG',
+        # 'level': 'DEBUG',
         # }
     }
 }

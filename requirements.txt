@@ -11,3 +11,6 @@ APScheduler==3.0.1
 django-reversion==1.8.5
 xlwt==0.7.5
 git+https://github.com/sshwsfc/django-xadmin.git@django1.7
+whoosh==2.6.0
+jieba==0.35
+django-haystack==2.3.1
