@@ -66,9 +66,8 @@ You are welcome to contribute to mango-test as follow
 Meanwhile you'd better follow the rules below
 
 * It's *NOT* recommended to submit a pull request directly to `master` branch. `develop` branch is more appropriate
-* Follow common Java coding conventions
-* Put all Java class files under *com.netease* package
-* Add the following [license](#license) in each Java class file
+* Follow common Python coding conventions
+* Add the following [license](#license) in each source file
 
 ## License
 
