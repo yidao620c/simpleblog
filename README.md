@@ -55,7 +55,7 @@ https://yidaoblog.herokuapp.com/
 -----------------------------------------------------
 ## How to Contribute
 
-You are welcome to contribute to mango-test as follow
+You are welcome to contribute to simpleblog as follow
 
 * add/edit wiki
 * report/fix issue
