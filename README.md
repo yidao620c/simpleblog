@@ -1,14 +1,31 @@
 ﻿## Django1.7开发一个简单的博客系统
 
-#### 三个分支：
+### 三个分支：
 
 * master： 主分支
 * py27：   基于python2.7.8版本的分支
 * py34：   基于python3.4.2版本的分支
 
 ------------------------------------------
-## 教程地址：
-http://my.oschina.net/yidao620c/blog/343174
+### 教程目录：
+
+* [使用Django1.7开发博客（1） - 入门篇](http://yidao620c.github.io/2015/04/20/simpleblog-01.html)
+* [使用Django1.7开发博客（2） - 模型](http://yidao620c.github.io/2015/04/20/simpleblog-02.html)
+* [使用Django1.7开发博客（3） - 部署](http://yidao620c.github.io/2015/04/20/simpleblog-03.html)
+* [使用Django1.7开发博客（4） - 三部曲](http://yidao620c.github.io/2015/04/20/simpleblog-04.html)
+* [使用Django1.7开发博客（5） - 页面美化](http://yidao620c.github.io/2015/04/21/simpleblog-05.html)
+* [使用Django1.7开发博客（6） - 模板继承](http://yidao620c.github.io/2015/04/21/simpleblog-06.html)
+* [使用Django1.7开发博客（7） - 实现功能](http://yidao620c.github.io/2015/04/21/simpleblog-07.html)
+* [使用Django1.7开发博客（8） - 继续完善](http://yidao620c.github.io/2015/04/21/simpleblog-08.html)
+* [使用Django1.7开发博客（9） - 用户认证](http://yidao620c.github.io/2015/04/21/simpleblog-09.html)
+* [使用Django1.7开发博客（10） - 全文搜索](http://yidao620c.github.io/2015/04/21/simpleblog-10.html)
+* [使用Django1.7开发博客（11）- 富文本与代码高亮](http://yidao620c.github.io/2015/04/21/simpleblog-11.html)
+* [使用Django1.7开发博客（12）- I18n国际化](http://yidao620c.github.io/2015/04/21/simpleblog-12.html)
+* [使用Django1.7开发博客（13）- Redis缓存](http://yidao620c.github.io/2015/04/21/simpleblog-13.html)
+* [使用Django1.7开发博客（14）- 集成Xadmin](http://yidao620c.github.io/2015/04/21/simpleblog-14.html)
+
+通过上面的教程，相信你已经搭建了一个具
+
 ------------------------------------------
 
 通过上面的教程，相信你已经搭建了一个具有基本功能的博客。最近在此基础之上又持续不断的改进，目前发布了1.0版本。
