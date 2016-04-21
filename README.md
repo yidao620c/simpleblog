@@ -1,4 +1,4 @@
-﻿## Django1.7开发一个简单的博客系统
+﻿## Django1.8开发一个简单的博客系统
 
 ### 三个分支：
 
@@ -9,20 +9,20 @@
 ------------------------------------------
 ### 教程目录：
 
-* [使用Django1.7开发博客（1） - 入门篇](http://www.pycoding.com/2015/04/20/simpleblog-01.html)
-* [使用Django1.7开发博客（2） - 模型](http://www.pycoding.com/2015/04/20/simpleblog-02.html)
-* [使用Django1.7开发博客（3） - 部署](http://www.pycoding.com/2015/04/20/simpleblog-03.html)
-* [使用Django1.7开发博客（4） - 三部曲](http://www.pycoding.com/2015/04/20/simpleblog-04.html)
-* [使用Django1.7开发博客（5） - 页面美化](http://www.pycoding.com/2015/04/21/simpleblog-05.html)
-* [使用Django1.7开发博客（6） - 模板继承](http://www.pycoding.com/2015/04/21/simpleblog-06.html)
-* [使用Django1.7开发博客（7） - 实现功能](http://www.pycoding.com/2015/04/21/simpleblog-07.html)
-* [使用Django1.7开发博客（8） - 继续完善](http://www.pycoding.com/2015/04/21/simpleblog-08.html)
-* [使用Django1.7开发博客（9） - 用户认证](http://www.pycoding.com/2015/04/21/simpleblog-09.html)
-* [使用Django1.7开发博客（10） - 全文搜索](http://www.pycoding.com/2015/04/21/simpleblog-10.html)
-* [使用Django1.7开发博客（11）- 富文本与代码高亮](http://www.pycoding.com/2015/04/21/simpleblog-11.html)
-* [使用Django1.7开发博客（12）- I18n国际化](http://www.pycoding.com/2015/04/21/simpleblog-12.html)
-* [使用Django1.7开发博客（13）- Redis缓存](http://www.pycoding.com/2015/04/21/simpleblog-13.html)
-* [使用Django1.7开发博客（14）- 集成Xadmin](http://www.pycoding.com/2015/04/21/simpleblog-14.html)
+* [使用Django1.8开发博客（1） - 入门篇](http://www.pycoding.com/2015/04/20/simpleblog-01.html)
+* [使用Django1.8开发博客（2） - 模型](http://www.pycoding.com/2015/04/20/simpleblog-02.html)
+* [使用Django1.8开发博客（3） - 部署](http://www.pycoding.com/2015/04/20/simpleblog-03.html)
+* [使用Django1.8开发博客（4） - 三部曲](http://www.pycoding.com/2015/04/20/simpleblog-04.html)
+* [使用Django1.8开发博客（5） - 页面美化](http://www.pycoding.com/2015/04/21/simpleblog-05.html)
+* [使用Django1.8开发博客（6） - 模板继承](http://www.pycoding.com/2015/04/21/simpleblog-06.html)
+* [使用Django1.8开发博客（7） - 实现功能](http://www.pycoding.com/2015/04/21/simpleblog-07.html)
+* [使用Django1.8开发博客（8） - 继续完善](http://www.pycoding.com/2015/04/21/simpleblog-08.html)
+* [使用Django1.8开发博客（9） - 用户认证](http://www.pycoding.com/2015/04/21/simpleblog-09.html)
+* [使用Django1.8开发博客（10） - 全文搜索](http://www.pycoding.com/2015/04/21/simpleblog-10.html)
+* [使用Django1.8开发博客（11）- 富文本与代码高亮](http://www.pycoding.com/2015/04/21/simpleblog-11.html)
+* [使用Django1.8开发博客（12）- I18n国际化](http://www.pycoding.com/2015/04/21/simpleblog-12.html)
+* [使用Django1.8开发博客（13）- Redis缓存](http://www.pycoding.com/2015/04/21/simpleblog-13.html)
+* [使用Django1.8开发博客（14）- 集成Xadmin](http://www.pycoding.com/2015/04/21/simpleblog-14.html)
 
 ------------------------------------------
 
