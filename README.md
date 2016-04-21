@@ -32,21 +32,24 @@
 1. 页面美化，加入了自定义样式和最新bootstrap
 2. 文章评论功能，并且显示每篇文章的评论数
 3. 文章标签，侧边栏会显示标签云，具体还有一个实现标签云的算法
-4. 分类目录
-5. 最新文章，评论列表的显示
-6. 文章归档功能，按照月份归档
-7. 实现热门文章功能，根据点击率来排名
-8. 文章的分页显示，每页大小可后台设置
-9. 给文章评分，顶和踩
-10. 集成xadmin的后台管理系统，管理员维护博客。
-11. 全文搜索功能
-12. 引入富文本编辑器，让格式更漂亮，并支持代码高亮等功能
-13. 全面集成redis缓存系统，提升系统速度
-14. i18n国际化
+4. 分类目录，最新文章，评论列表的显示
+5. 文章归档功能，按照月份归档
+6. 实现热门文章功能，根据点击率来排名
+7. 文章的分页显示，每页大小可后台设置
+8. 给文章评分，顶和踩
+9. 全文搜索功能
+10. 引入富文本编辑器，让格式更漂亮，并支持代码高亮等功能
+11. 全面集成redis缓存系统，提升系统速度
+12. i18n国际化
+13. 集成xadmin的后台管理系统，管理员维护博客。
 
-在持续改进过程中，不断的总结学习django框架，QuerySet的熟练使用，模板，全局处理器，静态资源等。
-后面还会引入缓存redis，因为点击率这些非常易变的应该要使用缓存。目前是直接存储数据库，速度有点慢。
-总之，在实际开发过程中不断的总结才是最好的学习方法。
+未来版本：
+
+1. 全面美化页面，我得找个好看点的模板
+2. 性能继续改进
+3. 将Django自带的ORM替换成SQLAlchemy
+4. 所有功能基于python3，那么需要替换xadmin管理后台
+5. 软件支持和文档的完善等
 
 一个人毕竟精力有限，期待在GitHub上面找到合作者共同完善这个系统。可以fork这个工程然后提交Pull Requests。
 
@@ -88,7 +91,7 @@ Meanwhile you'd better follow the rules below
 
 (The Apache License)
 
-Copyright (c) 2013-2014 [Xiong Neng](http://www.pycoding.com/) and other contributors
+Copyright (c) 2013-2016 [Xiong Neng](http://www.pycoding.com/) and other contributors
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

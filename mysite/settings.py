@@ -3,15 +3,15 @@
 Django settings for mysite project.
 
 For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
+https://docs.djangoproject.com/en/1.8/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
+https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-from urlparse import urlparse
+from urllib.parse import urlparse
 from django.utils.translation import ugettext_lazy as _
 import dj_database_url
 
@@ -23,7 +23,7 @@ ADMINS = (
 MANAGERS = ADMINS
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
+# See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'w%^z6iksml%ys02aw33f+mr3(nuhc8hq$k2p_*4ac=n@t!2*_%'
@@ -42,9 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    'xadmin',
-    'haystack',
-    'crispy_forms',
+    # 'xadmin',
+    # 'haystack',
+    # 'crispy_forms',
     'reversion',
     'pagination',
     'blog',
@@ -85,7 +85,7 @@ TEMPLATE_DIRS = (
 )
 
 # Database
-# https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
     'default': {
@@ -94,10 +94,10 @@ DATABASES = {
     }
 }
 
-# Internationalization https://docs.djangoproject.com/en/1.7/topics/i18n/
+# Internationalization https://docs.djangoproject.com/en/1.8/topics/i18n/
 # django-admin.py makemessages -l zh_CN
 # django-admin.py compilemessages
-LANGUAGE_CODE = 'zh-cn'
+LANGUAGE_CODE = 'zh-hans'
 TIME_ZONE = 'Asia/Shanghai'
 USE_I18N = True
 USE_L10N = True
@@ -108,10 +108,10 @@ LANGUAGES = (
 )
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
@@ -127,7 +127,7 @@ DEBUG = False
 
 LOGIN_REDIRECT_URL = '/'
 
-redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6379'))
+redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://192.168.203.95:6379'))
 CACHES = {
     'default': {
         'BACKEND': 'redis_cache.cache.RedisCache',
@@ -147,13 +147,13 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 SESSION_CACHE_ALIAS = 'default'
 
 # full text search
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',
-        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
-    },
-}
-HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+# HAYSTACK_CONNECTIONS = {
+#     'default': {
+#         'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',
+#         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+#     },
+# }
+# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

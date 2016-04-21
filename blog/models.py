@@ -2,14 +2,13 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
-from django.utils.encoding import python_2_unicode_compatible
 
 
-@python_2_unicode_compatible
 class Tag(models.Model):
     class Meta:
-        verbose_name = u'标签'
-        verbose_name_plural = u'标签'
+        app_label = 'blog'
+        verbose_name = '标签'
+        verbose_name_plural = '标签'
 
     name = models.CharField(max_length=40)
 
@@ -17,11 +16,11 @@ class Tag(models.Model):
         return self.name
 
 
-@python_2_unicode_compatible
 class Category(models.Model):
     class Meta:
-        verbose_name = u'分类目录'
-        verbose_name_plural = u'分类目录'
+        app_label = 'blog'
+        verbose_name = '分类目录'
+        verbose_name_plural = '分类目录'
 
     name = models.CharField(max_length=40)
 
@@ -29,12 +28,12 @@ class Category(models.Model):
         return self.name
 
 
-
-@python_2_unicode_compatible
 class Post(models.Model):
     class Meta:
-        verbose_name = u'文章'
-        verbose_name_plural = u'文章'
+        app_label = 'blog'
+        verbose_name = '文章'
+        verbose_name_plural = '文章'
+
     # 作者
     author = models.ForeignKey(User)
     # 标题
@@ -60,12 +59,12 @@ class Post(models.Model):
         return self.title
 
 
-
-@python_2_unicode_compatible
 class Comment(models.Model):
     class Meta:
-        verbose_name = u'评论'
-        verbose_name_plural = u'评论'
+        app_label = 'blog'
+        verbose_name = '评论'
+        verbose_name_plural = '评论'
+
     author = models.CharField(max_length=20)
     email = models.EmailField()
     text = models.TextField()
@@ -76,11 +75,12 @@ class Comment(models.Model):
         return '{0}: {1}'.format(self.author, self.post.title)
 
 
-@python_2_unicode_compatible
 class Evaluate(models.Model):
     class Meta:
-        verbose_name = u'评分'
-        verbose_name_plural = u'评分'
+        app_label = 'blog'
+        verbose_name = '评分'
+        verbose_name_plural = '评分'
+
     ip = models.CharField(max_length=40)
     evaluate = models.IntegerField()
     post = models.ForeignKey(Post)
@@ -89,11 +89,12 @@ class Evaluate(models.Model):
         return '{0}: {1}'.format(self.ip, self.evaluate)
 
 
-@python_2_unicode_compatible
 class Page(models.Model):
     class Meta:
-        verbose_name = u'页面'
-        verbose_name_plural = u'页面'
+        app_label = 'blog'
+        verbose_name = '页面'
+        verbose_name_plural = '页面'
+
     # 作者
     author = models.ForeignKey(User)
     # 标题

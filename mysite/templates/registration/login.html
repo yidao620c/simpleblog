@@ -8,58 +8,29 @@
     <meta name="author" content="">
     <meta name="robots" content="NONE,NOARCHIVE">
     <title>用户登录 - SimpleBlog</title>
-    <link href="{% static 'xadmin/vendor/bootstrap/css/bootstrap.css' %}" type="text/css"
-          media="screen" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" id="site-theme"
-          href="{% static 'xadmin/css/themes/bootstrap-xadmin.css' %}">
-    <link href="{% static 'xadmin/vendor/font-awesome/css/font-awesome.css' %}" type="text/css"
-          media="screen" rel="stylesheet">
-    <link href="{% static 'xadmin/css/xadmin.main.css' %}" type="text/css" media="screen"
-          rel="stylesheet">
-    <link href="{% static 'xadmin/css/xadmin.plugins.css' %}" type="text/css" media="screen"
-          rel="stylesheet">
-    <link href="{% static 'xadmin/css/xadmin.responsive.css' %}" type="text/css" media="screen"
-          rel="stylesheet">
-    <style type="text/css">
-        #panel-login {
-            max-width: 350px;
-        }
-
-        #panel-login .controls {
-            padding: 0px 15px 15px !important;
-        }
-
-        #panel-login .alert-block {
-            padding: 0px;
-        }
-
-        #panel-login .alert-block ul {
-            margin: 10px 15px;
-            padding-left: 0px;
-        }
-
-        #panel-login .alert-block ul li {
-            list-style-type: none;
-        }
-    </style>
-    <script type="text/javascript" src="{% static 'xadmin/vendor/jquery/jquery.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <script src="{% static 'js/jquery-1.11.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
 </head>
 <body class="login">
 <div class="container">
-    <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
-        {% csrf_token %}
-        <div class="panel panel-default panel-single" id="panel-login">
-            <div class="panel-heading">
-                <h2 class="form-signin-heading">请登录</h2>
-            </div>
-            <div class="panel-body">
+    <div class="panel panel-default panel-single form-login" id="panel-login">
+        <div class="panel-heading">
+            <h2 class="form-signin-heading">请登录</h2>
+        </div>
+        <div class="panel-body">
+            <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+                {% csrf_token %}
                 {% if form.errors %}
-                <div id="error_msg" class="row has-error" style="padding-left: 15px;">
+                <div id="error_msg" class="form-group has-error" style="padding-left: 15px;">
                     <p id="error_{{ forloop.counter }}_{{ field.auto_id }}"
                        class="text-danger help-block">用户名/密码不正确，请重新输入！</p>
                 </div>
                 {% endif %}
-                <div id="div_id_username" class="row">
+                <div id="div_id_username" class="form-group">
                     <div class="controls clearfix">
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
@@ -68,7 +39,7 @@
                         </div>
                     </div>
                 </div>
-                <div id="div_id_password" class="row">
+                <div id="div_id_password" class="form-group">
                     <div class="controls clearfix">
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon"><i class="fa fa-lock fa-fw"></i></span>
@@ -81,13 +52,12 @@
                 <input type="hidden" name="next" value="{{ next }}"/>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
                 <div class="text-info" style="margin-top:15px;">
-                    <a href="/xadmin/xadmin/password_reset/">
+                    <a href="{% url 'django.contrib.auth.views.password_reset' %}">
                         <i class="fa fa-question-sign"></i>忘记了您的密码或用户名？</a>
                 </div>
-            </div>
+            </form>
         </div>
-    </form>
-
+    </div>
 </div>
 <!-- /container -->
 
@@ -95,20 +65,5 @@
     document.getElementById('id_username').focus()
 </script>
 
-<script type="text/javascript"
-        src="{% static 'xadmin/vendor/jquery-ui/jquery.ui.core.js' %}"></script>
-<script type="text/javascript"
-        src="{% static 'xadmin/vendor/jquery-ui/jquery.ui.widget.js' %}"></script>
-<script type="text/javascript"
-        src="{% static 'xadmin/vendor/jquery-ui/jquery.ui.mouse.js' %}"></script>
-<script type="text/javascript"
-        src="{% static 'xadmin/vendor/jquery-ui/jquery.ui.sortable.js' %}"></script>
-<script type="text/javascript"
-        src="{% static 'xadmin/vendor/bootstrap/js/bootstrap.js' %}"></script>
-<script type="text/javascript" src="{% static 'xadmin/js/xadmin.main.js' %}"></script>
-<script type="text/javascript" src="{% static 'xadmin/js/xadmin.responsive.js' %}"></script>
-<script type="text/javascript"
-        src="{% static 'xadmin/vendor/jquery-ui/jquery.ui.effect.js' %}"></script>
-<script type="text/javascript" src="{% static 'xadmin/js/xadmin.plugin.themes.js' %}"></script>
 </body>
 </html>
