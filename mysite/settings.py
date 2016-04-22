@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 from urllib.parse import urlparse
 from django.utils.translation import ugettext_lazy as _
-import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -88,15 +87,6 @@ ROOT_URLCONF = 'mysite.urls'
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # Internationalization https://docs.djangoproject.com/en/1.9/topics/i18n/
 # django-admin.py makemessages -l zh_CN
 # django-admin.py compilemessages
@@ -123,12 +113,20 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, "locale"),
 )
 
-DATABASES['default'] = dj_database_url.config()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 DEBUG = False
 
 LOGIN_REDIRECT_URL = '/'
+
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6379'))
 CACHES = {
