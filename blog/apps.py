@@ -5,7 +5,7 @@ Topic: sample
 Desc : 
 """
 from django.apps import AppConfig
-from .commons import cache_manager
+from django.core.cache import cache
 
 
 class BlogAppConfig(AppConfig):
@@ -15,5 +15,5 @@ class BlogAppConfig(AppConfig):
     def ready(self):
         # startup code here
         print('-------start app--------')
-        cache_manager.REDIS_DB.delete('CLICKS')
+        cache.clear()
 

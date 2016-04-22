@@ -1650,4 +1650,8 @@ strong, b {
     font-weight: bold;
 }
 
+.pagination {
+    float: right;
+}
+
 /* thread twitter END */

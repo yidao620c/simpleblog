@@ -32,8 +32,6 @@ SECRET_KEY = 'w%^z6iksml%ys02aw33f+mr3(nuhc8hq$k2p_*4ac=n@t!2*_%'
 # DEBUG = True
 # ALLOWED_HOSTS = []
 
-TEMPLATE_DEBUG = True
-
 # Application definition
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -44,9 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # 'xadmin',
     # 'haystack',
-    # 'crispy_forms',
+    'crispy_forms',
     'reversion',
-    'pagination',
     'blog',
 )
 
@@ -59,34 +56,40 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'pagination.middleware.PaginationMiddleware',
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.contrib.auth.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    "django.core.context_processors.static",
-    "django.core.context_processors.tz",
-    "django.contrib.messages.context_processors.messages",
-    "blog.commons.context_processors.custom_proc",
-    "django.core.context_processors.request",
-)
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            os.path.join(BASE_DIR, 'mysite/templates'),
+            os.path.join(BASE_DIR, 'blog/templates'),
+        ],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'debug': True,
+            'context_processors': [
+                # Insert your TEMPLATE_CONTEXT_PROCESSORS here or use this
+                "django.contrib.auth.context_processors.auth",
+                "django.template.context_processors.debug",
+                "django.template.context_processors.i18n",
+                "django.template.context_processors.media",
+                "django.template.context_processors.static",
+                "django.template.context_processors.tz",
+                "django.template.context_processors.request",
+                "django.contrib.messages.context_processors.messages",
+                "blog.commons.context_processors.custom_proc",
+            ],
+        },
+    },
+]
 
 ROOT_URLCONF = 'mysite.urls'
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
-# TEMPLATE_DIRS
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR, 'mysite/templates'),
-    os.path.join(BASE_DIR, 'blog/templates'),
-)
-
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -127,15 +130,15 @@ DEBUG = False
 
 LOGIN_REDIRECT_URL = '/'
 
-redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://192.168.203.95:6379'))
+redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6379'))
 CACHES = {
     'default': {
-        'BACKEND': 'redis_cache.cache.RedisCache',
+        'BACKEND': 'django_redis.cache.RedisCache',
         'LOCATION': '{0}:{1}:{2}'.format(redis_url.hostname, redis_url.port, 0),
         'OPTIONS': {
             'DB': 0,
             'PASSWORD': redis_url.password,
-            'CLIENT_CLASS': 'redis_cache.client.DefaultClient',
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
             'PICKLE_VERSION': -1,  # Use the latest protocol version
             'SOCKET_TIMEOUT': 60,  # in seconds
             'IGNORE_EXCEPTIONS': True,

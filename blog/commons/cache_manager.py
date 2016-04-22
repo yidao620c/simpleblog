@@ -4,26 +4,31 @@
 Topic: redis缓存管理器
 """
 from ..models import Post
-from redis_cache import get_redis_connection
+from django.core.cache import cache
 from apscheduler.schedulers.background import BackgroundScheduler
 
 RUNNING_TIMER = False
-REDIS_DB = get_redis_connection('default')
+
+
+def clear():
+    cache.clear()
 
 
 def update_click(post):
-    if REDIS_DB.hexists("CLICKS", post.id):
-        REDIS_DB.hincrby('CLICKS', post.id)
+    k = "CLICKS{:d}".format(post.id)
+    if cache.has_key(k):
+        cache.incr(k)
     else:
-        REDIS_DB.hset('CLICKS', post.id, post.click + 1)
+        cache.set(k, post.click + 1)
     run_timer()
 
 
 def get_click(post):
-    if REDIS_DB.hexists("CLICKS", post.id):
-        return REDIS_DB.hget('CLICKS', post.id)
+    k = "CLICKS{:d}".format(post.id)
+    if cache.has_key(k):
+        return cache.get(k)
     else:
-        REDIS_DB.hset('CLICKS', post.id, post.click)
+        cache.set(k, post.click)
         return post.click
 
 
@@ -40,9 +45,9 @@ def run_timer():
 def sync_click():
     """同步文章点击数"""
     print('同步文章点击数start....')
-    for k in REDIS_DB.hkeys('CLICKS'):
+    for k in cache.keys():
         try:
-            p = Post.objects.get(pk=k)
+            p = Post.objects.get(pk=int(k[6:]))
             cache_click = get_click(p)
             if cache_click != p.click:
                 p.click = get_click(p)
@@ -50,3 +55,5 @@ def sync_click():
         except:
             pass
     print('同步文章点击数end....')
+    global RUNNING_TIMER
+    RUNNING_TIMER = False

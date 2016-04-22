@@ -1,9 +1,8 @@
 # coding=utf-8
-from django.conf.urls import patterns, include, url
+from django.conf.urls import url
 from .views import *
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', post_list, name='home'),
     # url(r'^posts/search/$', full_search, name='full_search'),
     url(r'^posts/tag/(?P<tag>\w+)$', post_list_by_tag, name='list_by_tag'),
@@ -18,4 +17,4 @@ urlpatterns = patterns(
     url(r'^post/(?P<pk>[0-9]+)/remove/$', post_remove, name='post_remove'),
     url(r'^page/(?P<pk>[0-9]+)/$', page_detail, name='page_detail'),
     url(r'^comment/add/(?P<pk>[0-9]+)/$', add_comment, name='add_comment'),
-)
+]

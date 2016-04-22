@@ -1,5 +1,4 @@
 # coding=utf-8
-from django.shortcuts import render
 from .models import Post, Comment, Tag, Category, Evaluate, Page
 from .commons import cache_manager
 from django.shortcuts import render, get_object_or_404
@@ -7,12 +6,14 @@ from .forms import PostForm, CommentForm
 from django.core.urlresolvers import reverse
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
-from django.db import connection
 from django.db.models import Count
 from datetime import datetime, timedelta
 from django.http import Http404
 from django.http import HttpResponse
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
+
+
 # from haystack.forms import SearchForm
 # import qiniu
 
@@ -37,12 +38,22 @@ def get_client_ip(request):
 
 def post_list(request):
     """所有已发布文章"""
-    posts = Post.objects.annotate(num_comment=Count('comment')).filter(
+    postsAll = Post.objects.annotate(num_comment=Count('comment')).filter(
         published_date__isnull=False).prefetch_related(
         'category').prefetch_related('tags').order_by('-published_date')
-    for p in posts:
+    for p in postsAll:
         p.click = cache_manager.get_click(p)
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    paginator = Paginator(postsAll, 10)  # Show 10 contacts per page
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
+    return render(request, 'blog/post_list.html', {'posts': posts, 'page': True})
 
 
 def post_list_by_tag(request, tag):
@@ -236,7 +247,6 @@ def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
     return redirect('blog.views.post_list')
-
 
 # @login_required
 # def uptoken(request):

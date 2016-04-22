@@ -1,11 +1,9 @@
 {% extends 'mysite/base.html' %}
 {% load blog_tags %}
-{% load pagination_tags %}
 {% block content %}
     {% if list_header %}
         <div class="box">{{ list_header }}</div>
     {% endif %}
-    {% autopaginate posts 10 %}
     {% for post in posts %}
         <div class="post">
             <h2><a href="{% url 'blog.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
@@ -47,5 +45,19 @@
             </div>
         </div>
     {% endfor %}
-    {% paginate %}
+    {% if page %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if posts.has_previous %}
+                <a href="?page={{ posts.previous_page_number }}">previous</a>
+            {% endif %}
+            <span class="current">
+                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+            </span>
+            {% if posts.has_next %}
+                <a href="?page={{ posts.next_page_number }}">next</a>
+            {% endif %}
+        </span>
+    </div>
+    {% endif %}
 {% endblock %}
