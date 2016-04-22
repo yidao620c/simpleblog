@@ -6,3 +6,4 @@ staticfiles
 local_settings.py
 db.sqlite3
 migrations
+whoosh_index/
