@@ -96,7 +96,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 LANGUAGES = (
-    ('zh-cn', _('Simplified Chinese')),
+    ('zh-hans', _('Simplified Chinese')),
     ('en', _('English')),
 )
 

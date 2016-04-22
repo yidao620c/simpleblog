@@ -34,15 +34,25 @@ def custom_proc(request):
     categories = models.Category.objects.annotate(
         num_post=Count('post')).filter(num_post__gt=0).order_by('name')
     # 文章归档，按照年月分类
-    select = {
-        'year': connection.ops.date_trunc_sql('year', 'published_date'),
-        'month': connection.ops.date_trunc_sql('month', 'published_date'),
-    }
-    archives = models.Post.objects.filter(published_date__isnull=False).extra(
-        select=select).values('year', 'month').annotate(number=Count('id'))
-    for ar in archives:
-        ar['year'] = ar['year'].year
-        ar['month'] = ar['month'].month
+    # select = {
+    #     'year': connection.ops.date_trunc_sql('year', 'published_date'),
+    #     'month': connection.ops.date_trunc_sql('month', 'published_date'),
+    # }
+    archives_db = models.Post.objects.filter(published_date__isnull=False)
+    archives = []
+    map_temp = {}
+    for ar in archives_db:
+        y = ar.published_date.year
+        m = ar.published_date.month
+        k = '{}|{}'.format(y, m)
+        if k in map_temp:
+            map_temp[k] += 1
+        else:
+            map_temp[k] = 1
+    for kk,vv in map_temp.items():
+        ym = kk.split('|')
+        archives.append({'year':ym[0], 'month':ym[1], 'number': vv})
+
     return {
         'RECENT_PAGES': recent_pages,
         'RECENT_POSTS': recent_posts,
