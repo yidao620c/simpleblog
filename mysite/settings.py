@@ -128,24 +128,24 @@ DATABASES = {
     }
 }
 
-redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6379'))
-CACHES = {
-    'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': '{0}:{1}:{2}'.format(redis_url.hostname, redis_url.port, 0),
-        'OPTIONS': {
-            'DB': 0,
-            'PASSWORD': redis_url.password,
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'PICKLE_VERSION': -1,  # Use the latest protocol version
-            'SOCKET_TIMEOUT': 60,  # in seconds
-            'IGNORE_EXCEPTIONS': True,
-        }
-    }
-}
-
-SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
-SESSION_CACHE_ALIAS = 'default'
+# redis_url = urlparse(os.environ.get('REDISTOGO_URL', 'redis://localhost:6379'))
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django_redis.cache.RedisCache',
+#         'LOCATION': 'redis://127.0.0.1:6379/0',
+#         'OPTIONS': {
+#             'DB': 0,
+#             # 'PASSWORD': redis_url.password,
+#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#             'PICKLE_VERSION': -1,  # Use the latest protocol version
+#             'SOCKET_TIMEOUT': 60,  # in seconds
+#             'IGNORE_EXCEPTIONS': True,
+#         }
+#     }
+# }
+#
+# SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+# SESSION_CACHE_ALIAS = 'default'
 
 # full text search
 # HAYSTACK_CONNECTIONS = {
