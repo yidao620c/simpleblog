@@ -55,7 +55,7 @@
 
 ------------------------------------------
 ## 演示地址(用户名/密码：admin/admin)
-https://yidaoblog.herokuapp.com/
+https://yidao620.pythonanywhere.com/
 ------------------------------------------
 
 首页效果：
