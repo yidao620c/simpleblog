@@ -4,7 +4,7 @@ from .views import *
 
 urlpatterns = [
     url(r'^$', post_list, name='home'),
-    # url(r'^posts/search/$', full_search, name='full_search'),
+    url(r'^posts/search/$', full_search, name='full_search'),
     url(r'^posts/tag/(?P<tag>\w+)$', post_list_by_tag, name='list_by_tag'),
     url(r'^posts/category/(?P<cg>\w+)$', post_list_by_category, name='list_by_cg'),
     url(r'^posts/archive/(?P<y>[0-9]{4})/(?P<m>[0-9]{1,2})$', post_list_by_ym, name='list_by_ym'),

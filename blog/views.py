@@ -14,17 +14,17 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 import json
 
 
-# from haystack.forms import SearchForm
+from haystack.forms import SearchForm
 # import qiniu
 
 
-# def full_search(request):
-#     """全局搜索"""
-#     keywords = request.GET['q']
-#     sform = SearchForm(request.GET)
-#     posts = sform.search()
-#     return render(request, 'blog/post_search_list.html',
-#                   {'posts': posts, 'list_header': '关键字 \'{}\' 搜索结果'.format(keywords)})
+def full_search(request):
+    """全局搜索"""
+    keywords = request.GET['q']
+    sform = SearchForm(request.GET)
+    posts = sform.search()
+    return render(request, 'blog/post_search_list.html',
+                  {'posts': posts, 'list_header': '关键字 \'{}\' 搜索结果'.format(keywords)})
 
 
 def get_client_ip(request):

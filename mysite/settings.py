@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     # 'xadmin',
-    # 'haystack',
+    'haystack',
     'crispy_forms',
     'reversion',
     'blog',
@@ -148,13 +148,13 @@ DATABASES = {
 # SESSION_CACHE_ALIAS = 'default'
 
 # full text search
-# HAYSTACK_CONNECTIONS = {
-#     'default': {
-#         'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',
-#         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
-#     },
-# }
-# HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'blog.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
+    },
+}
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
