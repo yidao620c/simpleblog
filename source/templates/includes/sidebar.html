@@ -1,0 +1,45 @@
+{% load i18n %}
+<aside class="sidebar">
+  <div class="panel">
+    <h2>{% translate "分类" %}</h2>
+    <ul>
+      {% for category in sidebar_categories %}
+        <li><a href="{{ category.get_absolute_url }}">{{ category.name }}（{{ category.total }}）</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="panel">
+    <h2>{% translate "最新文章" %}</h2>
+    <ul>
+      {% for post in latest_posts %}<li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>{% endfor %}
+    </ul>
+  </div>
+  <div class="panel">
+    <h2>{% translate "热门文章" %}</h2>
+    <ul>
+      {% for post in popular_posts %}<li><a href="{{ post.get_absolute_url }}">{{ post.title }}（{{ post.views }}）</a></li>{% endfor %}
+    </ul>
+  </div>
+  <div class="panel">
+    <h2>{% translate "最新评论" %}</h2>
+    <ul>
+      {% for comment in recent_comments %}
+        <li>{{ comment.nickname }}：<a href="{{ comment.post.get_absolute_url }}">{{ comment.post.title }}</a></li>
+      {% empty %}
+        <li>{% translate "还没有评论。" %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="panel">
+    <h2>{% translate "归档" %}</h2>
+    <ul>
+      {% for item in archives %}
+        <li><a href="{% url 'blog:archive' item.published_at__year item.published_at__month %}">{{ item.published_at__year }} 年 {{ item.published_at__month }} 月（{{ item.total }}）</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="panel">
+    <h2>{% translate "标签" %}</h2>
+    <p><a href="{% url 'blog:tags' %}">{% translate "查看标签云" %}</a></p>
+  </div>
+</aside>

@@ -1,0 +1,18 @@
+[project]
+name = "nengx-simple-blog"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "django==6.1",
+    "gunicorn>=26.2.0",
+    "markdown>=3.10.3",
+    "oss2>=2.19.1",
+    "pillow>=12.3.0",
+    "pygments>=2.21.0",
+    "redis>=8.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "polib>=1.2.0",
+]

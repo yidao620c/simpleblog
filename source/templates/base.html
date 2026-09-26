@@ -1,0 +1,52 @@
+﻿{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<!doctype html>
+<html lang="{{ LANGUAGE_CODE }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% translate "Django 6.1 博客" %}{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+  <link rel="stylesheet" href="{% static 'css/highlight.css' %}">
+</head>
+<body>
+<header class="site-header">
+  <nav>
+    <a class="brand" href="{% url 'blog:list' %}">Django 6.1 博客</a>
+    <form method="get" action="{% url 'blog:list' %}" class="search-form">
+      <input type="search" name="q" value="{{ query|default:'' }}" placeholder="{% translate '搜索文章' %}" aria-label="{% translate '搜索文章' %}">
+      <button type="submit">{% translate "搜索" %}</button>
+    </form>
+    <div class="auth-links">
+      {% if user.is_authenticated %}
+        <span>{{ user.username }}</span>
+        <form method="post" action="{% url 'blog:logout' %}">{% csrf_token %}<button type="submit">{% translate "退出" %}</button></form>
+      {% else %}
+        <a href="{% url 'blog:login' %}">{% translate "登录" %}</a>
+        <a href="{% url 'blog:register' %}">{% translate "注册" %}</a>
+      {% endif %}
+    </div>
+    <form method="post" action="{% url 'set_language' %}" class="language-form">{% csrf_token %}
+      <input name="next" type="hidden" value="{{ request.path }}">
+      <select name="language" aria-label="{% translate '语言' %}">
+        {% get_current_language as CURRENT_LANGUAGE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+          <option value="{{ language.code }}" {% if language.code == CURRENT_LANGUAGE %}selected{% endif %}>{{ language.name_local }}</option>
+        {% endfor %}
+      </select>
+      <button type="submit">{% translate "切换" %}</button>
+    </form>
+  </nav>
+</header>
+{% if messages %}
+<div class="messages">
+  {% for message in messages %}<p>{{ message }}</p>{% endfor %}
+</div>
+{% endif %}
+<div class="layout page-grid">
+  {% block page %}{% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}标签云{% endblock %}
+{% block page %}
+<section class="content">
+  <h1>{% translate "标签云" %}</h1>
+  <p class="cloud">
+    {% for tag in tags %}
+      <a style="font-size: {{ tag.font_size }}%" href="{{ tag.get_absolute_url }}">{{ tag.name }}（{{ tag.total }}）</a>
+    {% empty %}
+      <span class="empty">{% translate "还没有标签。" %}</span>
+    {% endfor %}
+  </p>
+</section>
+{% include "includes/sidebar.html" %}
+{% endblock %}

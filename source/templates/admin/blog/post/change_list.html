@@ -1,0 +1,15 @@
+{% extends "admin/change_list.html" %}
+
+{% block result_list %}
+  <div class="blog-stats module">
+    <h2>博客统计</h2>
+    <ul>
+      <li>文章总数：{{ blog_stats.total }}</li>
+      <li>已发布：{{ blog_stats.published }}</li>
+      <li>草稿：{{ blog_stats.draft }}</li>
+      <li>浏览总量：{{ blog_stats.views|default:0 }}</li>
+      <li>平均浏览量：{{ blog_stats.average_views|floatformat:1 }}</li>
+    </ul>
+  </div>
+  {{ block.super }}
+{% endblock %}

@@ -1,0 +1,110 @@
+﻿:root {
+  color-scheme: light;
+  --paper: #fbfaf8;
+  --ink: #172033;
+  --muted: #667085;
+  --line: #e6e2db;
+  --accent: #0f766e;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.75 system-ui, -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+}
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--accent); }
+.site-header {
+  background: rgba(251,250,248,.92);
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+}
+.site-header nav,
+.layout {
+  max-width: 1080px;
+  margin: auto;
+  padding: 1rem;
+}
+.site-header nav { display: flex; align-items: baseline; justify-content: space-between; }
+.search-form { display: flex; gap: .5rem; }
+.search-form input { min-width: 220px; padding: .35rem .6rem; border: 1px solid var(--line); border-radius: .4rem; }
+.search-form button { padding: .35rem .7rem; }
+.blog-stats { margin-bottom: 1rem; padding: 12px; background: #f8f8f8; border-radius: 4px; }
+.blog-stats ul { margin: 8px 0 0; padding-left: 18px; }
+.brand { font-size: 1.25rem; font-weight: 750; }
+.tagline { margin: 0; color: var(--muted); font-size: .9rem; }
+.layout { padding-top: 2rem; }
+.page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 2rem;
+  align-items: start;
+}
+.content { max-width: 760px; margin: auto; }
+.content-column { min-width: 0; }
+h1, h2 { line-height: 1.3; }
+.post-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 24px rgba(23,32,51,.04);
+}
+.post-card h2 { margin: 0 0 .4rem; }
+.meta { color: var(--muted); font-size: .88rem; }
+.summary {
+  background: #f1f5f4;
+  border-left: 3px solid var(--accent);
+  padding: .75rem 1rem;
+  border-radius: .25rem;
+}
+.empty { color: var(--muted); text-align: center; padding: 3rem 0; }
+.sidebar { display: grid; gap: 1rem; }
+.panel {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: .8rem;
+  padding: 1rem 1.2rem;
+}
+.panel h2 { margin: 0 0 .5rem; font-size: 1rem; }
+.panel ul { margin: 0; padding-left: 1.1rem; }
+.cloud { display: flex; flex-wrap: wrap; gap: .75rem 1rem; align-items: baseline; }
+.messages p { background: #ecfdf5; color: #065f46; max-width: 1080px; margin: 1rem auto 0; padding: .6rem .9rem; border-radius: .5rem; }
+.interactions { margin-top: 2rem; }
+.votes { display: flex; gap: .75rem; }
+button { border: 1px solid var(--accent); background: white; color: var(--accent); border-radius: .45rem; padding: .45rem .8rem; cursor: pointer; }
+button:hover { background: var(--accent); color: white; }
+.comment { background: white; border: 1px solid var(--line); border-radius: .6rem; padding: .8rem 1rem; margin-bottom: .75rem; }
+.comment-form input, .comment-form textarea {
+  width: 100%;
+  padding: .55rem;
+  border: 1px solid var(--line);
+  border-radius: .45rem;
+}
+.comment-form button { margin-top: .5rem; }
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+.pagination span { color: var(--muted); font-size: .9rem; }
+.auth-links { display: flex; align-items: center; gap: .75rem; }
+.auth-page { max-width: 520px; }
+.auth-page input { width: 100%; padding: .5rem; border: 1px solid var(--line); border-radius: .4rem; }
+@media (max-width: 900px) {
+  .page-grid { grid-template-columns: 1fr; }
+}
+.post-body h2 { margin-top: 2rem; }
+.post-body pre { overflow: auto; border-radius: .6rem; }
+.post-body table { width: 100%; border-collapse: collapse; }
+.post-body th, .post-body td { border: 1px solid var(--line); padding: .5rem .75rem; }
+.attachments { display: grid; gap: 1rem; }
+.attachments img { max-width: 100%; border-radius: .6rem; }
+.attachments figcaption { color: #667085; font-size: .88rem; }
+.language-form { display: flex; align-items: center; gap: .35rem; }
+.language-form select { padding: .3rem .45rem; border: 1px solid var(--line); border-radius: .4rem; }

@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% translate "登录" %}{% endblock %}
+{% block page %}
+<section class="content auth-page">
+  <h1>{% translate "登录" %}</h1>
+  <form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">{% translate "登录" %}</button></form>
+  <p>{% translate "还没有账号？" %}<a href="{% url 'blog:register' %}">{% translate "注册" %}</a></p>
+</section>
+{% endblock %}

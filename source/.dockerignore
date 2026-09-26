@@ -1,0 +1,10 @@
+﻿.venv
+.uv-cache
+.uv-python
+__pycache__
+*.py[cod]
+db.sqlite3
+staticfiles
+.env
+.env.*
+media

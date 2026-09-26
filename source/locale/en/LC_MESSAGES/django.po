@@ -1,0 +1,128 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: nengx-simple-blog\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Django 6.1 博客"
+msgstr "Django 6.1 Blog"
+
+msgid "搜索文章"
+msgstr "Search articles"
+
+msgid "搜索"
+msgstr "Search"
+
+msgid "退出"
+msgstr "Log out"
+
+msgid "登录"
+msgstr "Log in"
+
+msgid "注册"
+msgstr "Sign up"
+
+msgid "语言"
+msgstr "Language"
+
+msgid "切换"
+msgstr "Switch"
+
+msgid "文章列表"
+msgstr "Article list"
+
+msgid "还没有已发布文章。"
+msgstr "No published articles yet."
+
+msgid "上一页"
+msgstr "Previous"
+
+msgid "下一页"
+msgstr "Next"
+
+msgid "分类"
+msgstr "Categories"
+
+msgid "最新文章"
+msgstr "Latest articles"
+
+msgid "热门文章"
+msgstr "Popular articles"
+
+msgid "最新评论"
+msgstr "Recent comments"
+
+msgid "归档"
+msgstr "Archives"
+
+msgid "标签"
+msgstr "Tags"
+
+msgid "查看标签云"
+msgstr "View tag cloud"
+
+msgid "还没有评论。"
+msgstr "No comments yet."
+
+msgid "标签云"
+msgstr "Tag cloud"
+
+msgid "还没有标签。"
+msgstr "No tags yet."
+
+msgid "创建账号"
+msgstr "Create account"
+
+msgid "已有账号？"
+msgstr "Already have an account?"
+
+msgid "{{ count }} 次阅读"
+msgstr "{{ count }} views"
+
+msgid "搜索：{{ query }}"
+msgstr "Search: {{ query }}"
+
+msgid "第 {{ number }} / {{ total }} 页"
+msgstr "Page {{ number }} of {{ total }}"
+
+msgid "顶（{{ count }}）"
+msgstr "Up ({{ count }})"
+
+msgid "踩（{{ count }}）"
+msgstr "Down ({{ count }})"
+
+msgid "评论（{{ count }}）"
+msgstr "Comments ({{ count }})"
+
+msgid "还没有评论，写第一条吧。"
+msgstr "No comments yet. Write the first one."
+
+msgid "提交评论"
+msgstr "Submit comment"
+
+msgid "分类：%(category)s"
+msgstr "Category: %(category)s"
+
+msgid "标签：%(tag)s"
+msgstr "Tag: %(tag)s"
+
+msgid "%(year)s 年 %(month)s 月归档"
+msgstr "%(month)s %(year)s archive"
+
+msgid "评论已提交。"
+msgstr "Your comment was submitted."
+
+msgid "请检查昵称、邮箱和评论内容。"
+msgstr "Please check your name, email and comment."
+
+msgid "你已经对这篇文章投过票了。"
+msgstr "You have already voted on this article."
+
+msgid "感谢你的反馈。"
+msgstr "Thanks for your feedback."
+
+msgid "注册成功，欢迎加入。"
+msgstr "Registration succeeded. Welcome."

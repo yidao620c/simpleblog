@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load blog_extras i18n %}
+{% block title %}{{ post.title }}{% endblock %}
+{% block page %}
+<div class="content-column">
+  <article class="content">
+  <p class="breadcrumb"><a href="{% url 'blog:list' %}">文章列表</a></p>
+  <h1>{{ post.title }}</h1>
+  <p class="meta">
+    {{ post.published_at|date:"Y-m-d H:i" }} · {{ post.category.name }} · {% blocktranslate with count=post.views %}{{ count }} 次阅读{% endblocktranslate %}
+  </p>
+  {% if post.summary %}<p class="summary">{{ post.summary }}</p>{% endif %}
+  <div class="post-body">{{ post.body|markdown_html }}</div>
+  {% if post.attachments.all %}
+    <div class="attachments">
+      {% for attachment in post.attachments.all %}
+        <figure><img src="{{ attachment.image.url }}" alt="{{ attachment.title|default:attachment.image.name }}">{% if attachment.title %}<figcaption>{{ attachment.title }}</figcaption>{% endif %}</figure>
+      {% endfor %}
+    </div>
+  {% endif %}
+  </article>
+  <section class="content interactions">
+  <div class="votes">
+    <form method="post" action="{% url 'blog:vote' post.pk 1 %}">{% csrf_token %}<button type="submit">{% blocktranslate with count=post.likes %}顶（{{ count }}）{% endblocktranslate %}</button></form>
+    <form method="post" action="{% url 'blog:vote' post.pk 0 %}">{% csrf_token %}<button type="submit">{% blocktranslate with count=post.dislikes %}踩（{{ count }}）{% endblocktranslate %}</button></form>
+  </div>
+  <h2>{% blocktranslate with count=post.comments.count %}评论（{{ count }}）{% endblocktranslate %}</h2>
+  <div class="comment-list">
+    {% for comment in post.comments.all %}
+      <article class="comment">
+        <p class="meta">{{ comment.nickname }} · {{ comment.created_at|date:"Y-m-d H:i" }}</p>
+        <p>{{ comment.body|linebreaks }}</p>
+      </article>
+    {% empty %}
+      <p class="empty">{% translate "还没有评论，写第一条吧。" %}</p>
+    {% endfor %}
+  </div>
+  <form method="post" action="{% url 'blog:comment' post.pk %}" class="comment-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% translate "提交评论" %}</button>
+  </form>
+  </section>
+</div>
+{% include "includes/sidebar.html" %}
+{% endblock %}

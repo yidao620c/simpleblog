@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% if query %}{% blocktranslate %}搜索：{{ query }}{% endblocktranslate %}{% else %}{% translate "文章列表" %}{% endif %}{% endblock %}
+{% block page %}
+<section class="content">
+  {% if query %}
+    <h1>{% blocktranslate %}搜索：{{ query }}{% endblocktranslate %}</h1>
+  {% else %}
+    <h1>{{ page_title|default:_("文章列表") }}</h1>
+  {% endif %}
+  <div class="post-list">
+    {% for post in page_obj %}
+      <article class="post-card">
+        <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
+        <p class="meta">
+          {{ post.published_at|date:"Y-m-d H:i" }} · {{ post.category.name }} · {% blocktranslate with count=post.views %}{{ count }} 次阅读{% endblocktranslate %}
+        </p>
+        <p>{{ post.summary|default:post.body|truncatechars:120 }}</p>
+      </article>
+    {% empty %}
+      <p class="empty">{% translate "还没有已发布文章。" %}</p>
+    {% endfor %}
+  </div>
+  {% if page_obj.has_other_pages %}
+    <nav class="pagination">
+      {% if page_obj.has_previous %}
+        <a href="?q={{ query|urlencode }}&page={{ page_obj.previous_page_number }}">{% translate "上一页" %}</a>
+      {% endif %}
+      <span>{% blocktranslate with number=page_obj.number total=page_obj.paginator.num_pages %}第 {{ number }} / {{ total }} 页{% endblocktranslate %}</span>
+      {% if page_obj.has_next %}
+        <a href="?q={{ query|urlencode }}&page={{ page_obj.next_page_number }}">{% translate "下一页" %}</a>
+      {% endif %}
+    </nav>
+  {% endif %}
+</section>
+{% include "includes/sidebar.html" %}
+{% endblock %}
