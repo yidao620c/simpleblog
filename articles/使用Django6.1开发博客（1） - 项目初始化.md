@@ -86,7 +86,7 @@ uv 会创建 `.venv`，解析依赖，写入 `uv.lock`。本阶段实际安装�
 
 ## 生成物不该进入 Git
 
-依赖装好以后，`source` 目录里多了 `.venv` 和 `.uv-cache`。它们对本机开发有用，对版本控制没有意义。`.venv` 里的文件带绝对路径，换一台机器就不能直接使用。`.uv-cache` 是 uv 的缓存，能加速安装，却会让仓库膨胀。后面运行开发服务器时还会出现 `db.sqlite3` 和 `__p__ycache__`，同样属于可再生成的内容。
+依赖装好以后，`source` 目录里多了 `.venv` 和 `.uv-cache`。它们对本机开发有用，对版本控制没有意义。`.venv` 里的文件带绝对路径，换一台机器就不能直接使用。`.uv-cache` 是 uv 的缓存，能加速安装，却会让仓库膨胀。后面运行开发服务器时还会出现 `db.sqlite3` 和 `__pycache__`，同样属于可再生成的内容。
 
 所以在第一次功能提交前，先把 `.gitignore` 定下来。
 
@@ -233,7 +233,7 @@ uv run manage.py runserver 127.0.0.1:8000
 2. 项目入口和配置文件是否存在？
 3. `manage.py check` 能不能正常执行？
 
-于是建一个 `tests` 目录，再加一个空的 `tests/__i__nit__.__py`，让 Python 把它识别成包。
+于是建一个 `tests` 目录，再加一个空的 `tests/__init__.py`，让 Python 把它识别成包。
 
 ```python
 from importlib.metadata import version
