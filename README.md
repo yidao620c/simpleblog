@@ -11,20 +11,20 @@
 
 ## 教程目录
 
-- [使用Django6.1开发博客（1） - 项目初始化](articles/使用Django6.1开发博客（1）%20-%20项目初始化.md)
-- [使用Django6.1开发博客（2） - 模型与后台](articles/使用Django6.1开发博客（2）%20-%20模型与后台.md)
-- [使用Django6.1开发博客（3） - 页面与详情](articles/使用Django6.1开发博客（3）%20-%20页面与详情.md)
-- [使用Django6.1开发博客（4） - Markdown与代码高亮](articles/使用Django6.1开发博客（4）%20-%20Markdown与代码高亮.md)
-- [使用Django6.1开发博客（5） - 分类标签与归档](articles/使用Django6.1开发博客（5）%20-%20分类标签与归档.md)
-- [使用Django6.1开发博客（6） - 评论与互动](articles/使用Django6.1开发博客（6）%20-%20评论与互动.md)
-- [使用Django6.1开发博客（7） - 分页与站点设置](articles/使用Django6.1开发博客（7）%20-%20分页与站点设置.md)
-- [使用Django6.1开发博客（8） - 后台统计](articles/使用Django6.1开发博客（8）%20-%20后台统计.md)
-- [使用Django6.1开发博客（9） - 全文搜索](articles/使用Django6.1开发博客（9）%20-%20全文搜索.md)
-- [使用Django6.1开发博客（10） - 用户认证](articles/使用Django6.1开发博客（10）%20-%20用户认证.md)
-- [使用Django6.1开发博客（11） - 图片上传与OSS](articles/使用Django6.1开发博客（11）%20-%20图片上传与OSS.md)
-- [使用Django6.1开发博客（12） - Redis缓存](articles/使用Django6.1开发博客（12）%20-%20Redis缓存.md)
-- [使用Django6.1开发博客（13） - I18n国际化](articles/使用Django6.1开发博客（13）%20-%20I18n国际化.md)
-- [使用Django6.1开发博客（14） - 部署与收尾](articles/使用Django6.1开发博客（14）%20-%20部署与收尾.md)
+- [使用Django6.1开发博客（1） - 项目初始化](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-01-init/)
+- [使用Django6.1开发博客（2） - 模型与后台](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-02-models-admin/)
+- [使用Django6.1开发博客（3） - 页面与详情](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-03-views-templates/)
+- [使用Django6.1开发博客（4） - Markdown与代码高亮](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-04-markdown-code/)
+- [使用Django6.1开发博客（5） - 分类标签与归档](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-05-taxonomy-archive/)
+- [使用Django6.1开发博客（6） - 评论与互动](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-06-comments-votes/)
+- [使用Django6.1开发博客（7） - 分页与站点设置](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-07-pagination-settings/)
+- [使用Django6.1开发博客（8） - 后台统计](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-08-admin-stats/)
+- [使用Django6.1开发博客（9） - 全文搜索](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-09-full-text-search/)
+- [使用Django6.1开发博客（10） - 用户认证](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-10-authentication/)
+- [使用Django6.1开发博客（11） - 图片上传与OSS](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-11-oss-uploads/)
+- [使用Django6.1开发博客（12） - Redis缓存](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-12-redis-cache/)
+- [使用Django6.1开发博客（13） - I18n国际化](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-13-i18n/)
+- [使用Django6.1开发博客（14） - 部署与收尾](https://www.xiongneng.me/posts/python/simpleblog/django61-blog-14-deployment/)
 
 ## 环境准备
 
